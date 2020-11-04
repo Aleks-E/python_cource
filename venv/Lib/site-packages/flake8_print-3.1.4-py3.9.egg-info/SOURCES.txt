@@ -1,0 +1,11 @@
+README.md
+flake8_print.py
+setup.cfg
+setup.py
+flake8_print.egg-info/PKG-INFO
+flake8_print.egg-info/SOURCES.txt
+flake8_print.egg-info/dependency_links.txt
+flake8_print.egg-info/entry_points.txt
+flake8_print.egg-info/not-zip-safe
+flake8_print.egg-info/requires.txt
+flake8_print.egg-info/top_level.txt
