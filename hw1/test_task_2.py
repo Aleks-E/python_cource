@@ -1,7 +1,7 @@
 from collections.abc import Sequence
 
 import pytest
-from task_2 import check_fibonacci
+from hw1.task_2 import check_fibonacci
 
 
 data_0 = []
