@@ -18,5 +18,3 @@ def check_fibonacci(data: Sequence[int]) -> bool:
                 return False
             data = data[1:]
         return True
-
-print(22)
