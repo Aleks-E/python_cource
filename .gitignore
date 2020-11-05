@@ -5,3 +5,4 @@ venv_*/
 .coverage
 *.pyc
 venv
+.venv/
