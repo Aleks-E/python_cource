@@ -4,5 +4,4 @@ venv_*/
 .idea/
 .coverage
 *.pyc
-venv
-.venv/
+/venv
