@@ -27,13 +27,13 @@ with open("test_task_3_data_6.txt", "w") as data:
 @pytest.mark.parametrize(
     ["file_name", "expected_result"],
     [
-        ("data_0.txt", (0, 0)),
-        ("data_1.txt", (1, 1)),
-        ("data_2.txt", (8, 2)),
-        ("data_3.txt", (8, 1)),
-        ("data_4.txt", (8, 1)),
-        ("data_5.txt", (8, 1)),
-        ("data_6.txt", (8, 1)),
+        ("test_task_3_data_0.txt", (0, 0)),
+        ("test_task_3_data_1.txt", (1, 1)),
+        ("test_task_3_data_2.txt", (8, 2)),
+        ("test_task_3_data_3.txt", (8, 1)),
+        ("test_task_3_data_4.txt", (8, 1)),
+        ("test_task_3_data_5.txt", (8, 1)),
+        ("test_task_3_data_6.txt", (8, 1)),
     ],
 )
 def test_find_maximum_and_minimum(file_name: str, expected_result: (int, int)):
