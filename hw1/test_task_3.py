@@ -2,25 +2,25 @@ import pytest
 
 from hw1.task_3 import find_maximum_and_minimum
 
-with open("data_0.txt", "w") as data:
+with open("test_task_3_data_0.txt", "w") as data:
     data.write("0")
 
-with open("data_1.txt", "w") as data:
+with open("test_task_3_data_1.txt", "w") as data:
     data.write("1\n1\n1\n1")
 
-with open("data_2.txt", "w") as data:
+with open("test_task_3_data_2.txt", "w") as data:
     data.write("4\n8\n3\n2")
 
-with open("data_3.txt", "w") as data:
+with open("test_task_3_data_3.txt", "w") as data:
     data.write("4\n8\n8\n2\n1\n2")
 
-with open("data_4.txt", "w") as data:
+with open("test_task_3_data_4.txt", "w") as data:
     data.write("4\n8\n1\n8\n2\n1\n2")
 
-with open("data_5.txt", "w") as data:
+with open("test_task_3_data_5.txt", "w") as data:
     data.write("4\n8\n1\n8\n2\n2\n1")
 
-with open("data_6.txt", "w") as data:
+with open("test_task_3_data_6.txt", "w") as data:
     data.write("8\n1\n8\n2\n2\n1")
 
 
