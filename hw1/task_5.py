@@ -14,7 +14,7 @@ from typing import List
 
 def find_maximal_subarray_sum(nums: List[int], k: int) -> int:
     """ Function calculates sum of sub-array elements """
-    if nums == []:
+    if not nums:
         print("empty list")
         return -1
     elif k > len(nums):
@@ -32,9 +32,3 @@ def find_maximal_subarray_sum(nums: List[int], k: int) -> int:
             if subarray_sum_current > subarray_sum_maximum:
                 subarray_sum_maximum = subarray_sum_current
         return subarray_sum_maximum
-
-
-nums = [1, 3, -1, 9, 5, 3, 6, 7]
-k = 3
-
-print(find_maximal_subarray_sum(nums, k))
