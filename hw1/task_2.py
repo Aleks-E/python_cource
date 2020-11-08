@@ -14,4 +14,8 @@ def check_fibonacci(data: Sequence[int]) -> bool:
         return True
     if data == [0, 1]:
         return True
-    return False
+    while data[2:]:
+        if data[2] != data[0] + data[1]:
+            return False
+        data = data[1:]
+    return True
