@@ -4,13 +4,12 @@ import pytest
 
 from hw1.task_2 import check_fibonacci
 
-data_0 = []
-data_1 = [2]
-data_2 = [0]
-data_3 = [0, 3]
-data_4 = [1, 1]
-data_5 = [0, 1]
-data_6 = [
+data_0 = [2]
+data_1 = [0]
+data_2 = [0, 3]
+data_3 = [1, 1]
+data_4 = [0, 1]
+data_5 = [
     1,
     1,
     1,
@@ -33,7 +32,7 @@ data_6 = [
     4181,
     6765,
 ]
-data_7 = [
+data_6 = [
     0,
     1,
     1,
@@ -56,7 +55,7 @@ data_7 = [
     4181,
     6765,
 ]
-data_8 = [
+data_7 = [
     0,
     1,
     1,
@@ -79,7 +78,7 @@ data_8 = [
     4181,
     67651,
 ]
-data_9 = [
+data_8 = [
     0,
     1,
     1,
@@ -108,15 +107,14 @@ data_9 = [
     ("data", "expected_result"),
     [
         (data_0, False),
-        (data_1, False),
-        (data_2, True),
+        (data_1, True),
+        (data_2, False),
         (data_3, False),
-        (data_4, False),
-        (data_5, True),
+        (data_4, True),
+        (data_5, False),
         (data_6, False),
         (data_7, False),
-        (data_8, False),
-        (data_9, True),
+        (data_8, True),
     ],
 )
 def test_check_fibonacci(data: Sequence[int], expected_result: bool):
