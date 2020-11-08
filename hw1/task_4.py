@@ -10,11 +10,11 @@ from typing import List
 
 
 def check_sum_of_four(a: List[int], b: List[int], c: List[int], d: List[int]) -> int:
+    numbers_sum = [
+        i + j + k + n for i in [1, 2] for j in [-1, 2] for k in [1, 2] for n in [-1, 2]
+    ]
     zero_numbers = 0
-    for i in a[0]:
-        for j in b[1]:
-            for k in c[2]:
-                for n in d[3]:
-                    if i + j + k + n == 0:
-                        zero_numbers += 1
+    for i in numbers_sum:
+        if i == 0:
+            zero_numbers += 1
     return zero_numbers
