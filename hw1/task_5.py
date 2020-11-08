@@ -15,13 +15,10 @@ from typing import List
 def find_maximal_subarray_sum(nums: List[int], k: int) -> int:
     """ Function calculates sum of sub-array elements """
     if not nums:
-        print("empty list")
         return -1
     elif k > len(nums):
-        print("k > nums")
         return -1
     elif k <= 0:
-        print("k <= 0")
         return -1
     else:
         subarray_sum_maximum = subarray_sum_current = sum(nums[0:k])
