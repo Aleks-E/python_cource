@@ -22,7 +22,7 @@ def find_maximal_subarray_sum_1(nums: List[int], k: int) -> int:
 def find_maximal_subarray_sum(nums: List[int], k: int) -> int:
     if len(nums) == 1 and k == 1:
         return max(List)
-    if len(nums) >= k and k > 0:
+    if len(nums) >= k > 0:
         subarray_sum_maximum = subarray_sum_current = sum(nums[0:k])
         while len(nums) > k:
             subarray_sum_current -= nums[0]
@@ -31,4 +31,4 @@ def find_maximal_subarray_sum(nums: List[int], k: int) -> int:
             if subarray_sum_current > subarray_sum_maximum:
                 subarray_sum_maximum = subarray_sum_current
         return subarray_sum_maximum
-    return -1
+
