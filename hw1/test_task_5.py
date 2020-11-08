@@ -2,10 +2,6 @@ import pytest
 
 from hw1.task_5 import find_maximal_subarray_sum
 
-nums = []
-k = 0
-data_0 = nums, k
-
 nums = [1, 3, -1, -3, 5, 3, 6, 7]
 k = 20
 data_1 = nums, k
@@ -30,7 +26,6 @@ data_5 = nums, k
 @pytest.mark.parametrize(
     ("data", "expected_result"),
     [
-        (data_0, -1),
         (data_1, -1),
         (data_2, -1),
         (data_3, 16),
