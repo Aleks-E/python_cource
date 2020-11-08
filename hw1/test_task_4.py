@@ -27,7 +27,7 @@ data_17 = [-1, -1], [1, 1], [1, 1], [-1, -1]
 
 
 @pytest.mark.parametrize(
-    ["data", "expected_result"],
+    ("data", "expected_result"),
     [
         (data_0, 0),
         (data_1, 8),

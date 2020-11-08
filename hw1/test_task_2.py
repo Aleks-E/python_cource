@@ -105,7 +105,7 @@ data_9 = [
 
 
 @pytest.mark.parametrize(
-    ["data", "expected_result"],
+    ("data", "expected_result"),
     [
         (data_0, False),
         (data_1, False),
