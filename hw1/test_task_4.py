@@ -50,7 +50,7 @@ data_17 = [-1, -1], [1, 1], [1, 1], [-1, -1]
     ],
 )
 def test_check_sum_of_four(
-    data: (list[int], list[int], list[int], list[int]), expected_result: int
+    data: (List[int], List[int], List[int], List[int]), expected_result: int
 ):
     actual_result = check_sum_of_four(*data)
 
