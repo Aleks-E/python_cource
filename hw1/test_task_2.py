@@ -1,5 +1,7 @@
 import pytest
 
+from typing import List
+
 from hw1.task_2 import check_fibonacci
 
 data_0 = [2]
@@ -115,7 +117,7 @@ data_8 = [
         (data_8, True),
     ],
 )
-def test_check_fibonacci(data: Sequence[int], expected_result: bool):
+def test_check_fibonacci(data: List[int], expected_result: bool):
     actual_result = check_fibonacci(data)
 
     assert actual_result == expected_result
