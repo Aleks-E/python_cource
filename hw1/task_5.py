@@ -15,7 +15,7 @@ from typing import List
 def find_maximal_subarray_sum_1(nums: List[int], k: int) -> int:
     a = []
     for n in range(1, k + 1):
-        a.append(find_maximal_subarray_sum(nums, k))
+        a.append(find_maximal_subarray_sum(nums, n))
     return max(a)
 
 

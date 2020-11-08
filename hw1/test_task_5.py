@@ -1,6 +1,6 @@
 import pytest
 
-from hw1.task_5 import find_maximal_subarray_sum, find_maximal_subarray_sum_1
+from hw1.task_5 import find_maximal_subarray_sum_1
 
 nums = [1, 3, -1, -3, 5, 3, 6, 7]
 k = 20
