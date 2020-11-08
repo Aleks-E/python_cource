@@ -10,8 +10,6 @@ from collections.abc import Sequence
 
 
 def check_fibonacci(data: Sequence[int]) -> bool:
-    if not data:
-        return False
     if data == [0]:
         return True
     if data == [0, 1]:
