@@ -17,5 +17,4 @@ def check_sum_of_four(a: List[int], b: List[int], c: List[int], d: List[int]) ->
                 for n in d:
                     if i + j + k + n == 0:
                         zero_numbers += 1
-                        print(i, j, k, n)
     return zero_numbers
