@@ -1,5 +1,3 @@
-from collections.abc import Sequence
-
 import pytest
 
 from hw1.task_2 import check_fibonacci
