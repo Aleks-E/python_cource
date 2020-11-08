@@ -7,10 +7,13 @@ from hw1.task_1 import check_power_of_2
     ["value", "expected_result"],
     [
         (65536, True),
-        (65535, False),
-        (12, False),
+        (16384, True),
+        (16, True),
         (1, True),
         (0, True),
+        (50000, False),
+        (10000, False),
+        (1000, False)
     ],
 )
 def test_power_of_2(value: int, expected_result: bool):
