@@ -9,12 +9,12 @@ We guarantee, that all A, B, C, D have same length of N where 0 ≤ N ≤ 1000.
 from typing import List
 
 
-def check_sum_of_four(A: List[int], B: List[int], C: List[int], D: List[int]) -> int:
+def check_sum_of_four(a: List[int], b: List[int], c: List[int], d: List[int]) -> int:
     zero_numbers = 0
-    for i in A:
-        for j in B:
-            for k in C:
-                for l in D:
+    for i in a:
+        for j in b:
+            for k in c:
+                for l in d:
                     if i + j + k + l == 0:
                         zero_numbers += 1
                         print(i, j, k, l)
