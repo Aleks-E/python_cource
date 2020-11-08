@@ -9,7 +9,7 @@ We guarantee, that the given sequence contain >= 0 integers inside.
 from typing import List
 
 
-def fib_gen():
+def fib_gen() -> int:
     number_prev_1, number_prev = 0, 1
     yield number_prev_1
     yield number_prev
