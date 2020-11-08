@@ -9,10 +9,10 @@ Examples:
     nums = [1, 3, -1, -3, 5, 3, 6, 7], k = 3
     result = 16
 """
-from collections.abc import Sequence
+from typing import List
 
 
-def find_maximal_subarray_sum(nums: Sequence[int], k: int) -> int:
+def find_maximal_subarray_sum(nums: List[int], k: int) -> int:
     """ Function calculates sum of sub-array elements """
     subarray_sum_maximum = subarray_sum_current = sum(nums[0:k])
     while len(nums) > k:
