@@ -1,6 +1,6 @@
-import pytest
-
 from typing import List
+
+import pytest
 
 from hw1.task_2 import check_fibonacci
 
