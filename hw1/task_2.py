@@ -15,4 +15,3 @@ def check_fibonacci(data: Sequence[int]) -> bool:
     if data == [0, 1]:
         return True
     return False
-
