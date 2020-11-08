@@ -12,9 +12,16 @@ Examples:
 from typing import List
 
 
+def find_maximal_subarray_sum_1(nums: List[int], k: int) -> int:
+    a = []
+    for i in range(1, k+1):
+        a.append(find_maximal_subarray_sum(nums, k))
+    return max(a)
+
+
 def find_maximal_subarray_sum(nums: List[int], k: int) -> int:
     if len(nums) == 1 and k == 1:
-        return len[0]
+        return max(List)
     if len(nums) >= k and k > 0:
         subarray_sum_maximum = subarray_sum_current = sum(nums[0:k])
         while len(nums) > k:
