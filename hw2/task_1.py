@@ -13,7 +13,7 @@ import string
 
 def get_longest_diverse_words(file_path: str) -> List[str]:
     words_unique = {}
-    with open("file_path", "r") as data:
+    with open(file_path, "r") as data:
         for line in data:
             line = line.rstrip()
             line = line.split(" ")
