@@ -8,66 +8,46 @@ Given a file containing text. Complete using only default collections:
 """
 from typing import List
 
+import string
 
 
-def split_symbols(a):
-    b = list(a)
-    return b
+def get_longest_diverse_words(file_path: str) -> List[str]:
+    words_unique = {}
+    with open("file_path", "r") as data:
+        for line in data:
+            line = line.rstrip()
+            line = line.split(' ')
+            for word in line:
+                if word != '':
+                    word = word.encode().decode('unicode-escape')
+                    word = word.translate(word.maketrans("", "", string.punctuation))
+                    word = word.replace('»', '')
+                    word = word.replace('«', '')
+                    if word not in words_unique:
+                        words_unique[word] = len(set(word))
+
+        words_list = list(words_unique.items())
+        words_list.sort(key=lambda x: x[1], reverse=True)
+        longest_unique_words = []
+        for i in range(10):
+            longest_unique_words.append(words_list[i][0])
+
+        return longest_unique_words
 
 
 
 
 
-def first_symbol_unicode_check(a):
-    if '\\' in a[0]:
-        return a[0:6], a[7:]
-    else:
-        return a[0], a[1:]
-
-
-
-
-# def get_longest_diverse_words(file_path: str) -> List[str]:
-#     words_unique = {}
-#     symbol_unique = {}
+# def get_rarest_char(file_path: str) -> str:
+#     chars = {}
 #     with open('data.txt', 'r') as data:
 #         for line in data:
 #             line = line.rstrip()
-#             line = line.split(' ')
-#             print('line', line)
-#             for word in line:
-#                 if word is not '':
-#                     symbol_unique[word] = 0
-#                     print('word', word)
-#
-#                     word_1 = word;
-#                     while word_1:
-#                         symbol = first_symbol_unicode_check(word_1)
-#                         print('symbol_check', symbol)
-#                         # word_1 = word_1[1:]
-#                         word_1 = symbol[1]
-#                         if symbol[0] not in symbol_unique:
-#                             symbol_unique[word] += 1
-#                         else:
-#                             symbol_unique[word] = 1
-#
-#             return symbol_unique
-#         # return symbol_unique
-
-
-
-# print(get_longest_diverse_words('data.txt'))
 
 
 
 
 
-
-
-
-
-def get_rarest_char(file_path: str) -> str:
-    ...
 
 
 def count_punctuation_chars(file_path: str) -> int:
@@ -80,3 +60,9 @@ def count_non_ascii_chars(file_path: str) -> int:
 
 def get_most_common_non_ascii_char(file_path: str) -> str:
     ...
+
+
+
+
+# print(get_longest_diverse_words('data.txt'))
+
