@@ -10,7 +10,7 @@ result = ["fgthy", "tabc", "abd", "abf", "abg", "wey", "fvs", "qhy", "zxc", "hjy
 
 
 @pytest.mark.parametrize(
-    ["file_name", "expected_result"],
+    ("file_name", "expected_result"),
     [
         ("hw2/test_task_1_data.txt", result),
     ],
