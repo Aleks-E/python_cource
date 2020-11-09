@@ -32,7 +32,7 @@ def get_longest_diverse_words(file_path: str) -> List[str]:
             longest_unique_words.append(words_list[i][0])
 
         return longest_unique_words
-print(11)
+
 
 def get_rarest_char(file_path: str) -> str:
     ...
