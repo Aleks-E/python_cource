@@ -35,11 +35,8 @@ def get_longest_diverse_words(file_path: str) -> List[str]:
         return longest_unique_words
 
 
-# def get_rarest_char(file_path: str) -> str:
-#     chars = {}
-#     with open('data.txt', 'r') as data:
-#         for line in data:
-#             line = line.rstrip()
+def get_rarest_char(file_path: str) -> str:
+    ...
 
 
 def count_punctuation_chars(file_path: str) -> int:
@@ -52,6 +49,3 @@ def count_non_ascii_chars(file_path: str) -> int:
 
 def get_most_common_non_ascii_char(file_path: str) -> str:
     ...
-
-
-# print(get_longest_diverse_words('data.txt'))
