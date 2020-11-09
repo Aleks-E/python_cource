@@ -11,9 +11,7 @@ result = ["fgthy", "tabc", "abd", "abf", "abg", "wey", "fvs", "qhy", "zxc", "hjy
 
 @pytest.mark.parametrize(
     ["file_name", "expected_result"],
-    [
-        ("hw2/test_task_1_data.txt", result),
-    ],
+    (("hw2/test_task_1_data.txt", result),),
 )
 def test_get_longest_diverse_words(file_name: str, expected_result: list):
     actual_result = get_longest_diverse_words(file_name)
