@@ -10,7 +10,7 @@ from hw1.task_1 import check_power_of_2
         (16384, True),
         (16, True),
         (1, True),
-        (0, True),
+        (0, False),
         (50000, False),
         (10000, False),
         (1000, False)

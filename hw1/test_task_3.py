@@ -25,7 +25,7 @@ with open("test_task_3_data_6.txt", "w") as data:
 
 
 @pytest.mark.parametrize(
-    ["file_name", "expected_result"],
+    ("file_name", "expected_result"),
     [
         ("test_task_3_data_0.txt", (0, 0)),
         ("test_task_3_data_1.txt", (1, 1)),

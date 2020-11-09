@@ -1,3 +1,5 @@
+from typing import List
+
 import pytest
 
 from hw1.task_4 import check_sum_of_four
@@ -27,7 +29,7 @@ data_17 = [-1, -1], [1, 1], [1, 1], [-1, -1]
 
 
 @pytest.mark.parametrize(
-    ["data", "expected_result"],
+    ("data", "expected_result"),
     [
         (data_0, 0),
         (data_1, 8),
@@ -50,7 +52,7 @@ data_17 = [-1, -1], [1, 1], [1, 1], [-1, -1]
     ],
 )
 def test_check_sum_of_four(
-    data: (list[int], list[int], list[int], list[int]), expected_result: int
+    data: (List[int], List[int], List[int], List[int]), expected_result: int
 ):
     actual_result = check_sum_of_four(*data)
 

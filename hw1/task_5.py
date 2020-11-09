@@ -12,18 +12,17 @@ Examples:
 from typing import List
 
 
+def find_maximal_subarray_sum_1(nums: List[int], k: int) -> int:
+    a = []
+    for n in range(1, k + 1):
+        a.append(find_maximal_subarray_sum(nums, n))
+    return max(a)
+
+
 def find_maximal_subarray_sum(nums: List[int], k: int) -> int:
-    """ Function calculates sum of sub-array elements """
-    if not nums:
-        print("empty list")
-        return -1
-    elif k > len(nums):
-        print("k > nums")
-        return -1
-    elif k <= 0:
-        print("k <= 0")
-        return -1
-    else:
+    if len(nums) == 1 and k == 1:
+        return max(List)
+    if len(nums) >= k > 0:
         subarray_sum_maximum = subarray_sum_current = sum(nums[0:k])
         while len(nums) > k:
             subarray_sum_current -= nums[0]
@@ -32,3 +31,4 @@ def find_maximal_subarray_sum(nums: List[int], k: int) -> int:
             if subarray_sum_current > subarray_sum_maximum:
                 subarray_sum_maximum = subarray_sum_current
         return subarray_sum_maximum
+    return -1
