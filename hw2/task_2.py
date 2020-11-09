@@ -31,4 +31,4 @@ def major_and_minor_elem(inp: List) -> Tuple[int, int]:
     occurrences = list(number_of_occurrences.items())
     occurrences.sort(key=lambda x: x[1])
 
-    return (occurrences[-1][0], occurrences[0][0])
+    return occurrences[-1][0], occurrences[0][0]

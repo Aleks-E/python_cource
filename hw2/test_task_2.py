@@ -1,4 +1,4 @@
-from typing import List, Tuple
+from typing import List
 
 from hw2.task_2 import major_and_minor_elem
 
@@ -14,7 +14,7 @@ result = (2, 1)
         (data, result),
     ],
 )
-def test_major_and_minor_elem(inp: List, expected_result: Tuple(int, int)):
+def test_major_and_minor_elem(inp: List, expected_result: (int, int)):
     actual_result = major_and_minor_elem(inp)
 
     assert actual_result == expected_result
