@@ -6,9 +6,8 @@ Given a file containing text. Complete using only default collections:
     4) Count every non ascii char
     5) Find most common non ascii char for document
 """
-from typing import List
-
 import string
+from typing import List
 
 
 def get_longest_diverse_words(file_path: str) -> List[str]:
