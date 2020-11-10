@@ -1,37 +1,67 @@
-from hw2.task_1 import get_longest_diverse_words
-
-import pytest
-
-with open("hw2/test_task_1_data.txt", "w") as test_data:
-    test_data.write("aaaaa\n" "tabc\n" "abd fgthy abf ab.g wey fvs qhy zxc. hjy")
-
-
-result = ["fgthy", "tabc", "abd", "abf", "abg", "wey", "fvs", "qhy", "zxc", "hjy"]
-
-
-@pytest.mark.parametrize(
-    ("file_name", "expected_result"),
-    [
-        ("hw2/test_task_1_data.txt", result),
-    ],
+from hw2.task_1 import (
+    count_non_ascii_chars,
+    count_punctuation_chars,
+    count_punctuation_chars_alternative_1,
+    get_longest_diverse_words,
+    get_most_common_non_ascii_char,
+    get_rarest_char,
 )
-def test_get_longest_diverse_words(file_name: str, expected_result: list):
-    actual_result = get_longest_diverse_words(file_name)
 
+
+def test_get_longest_diverse_words():
+    with open("hw2/test_task_1_data.txt", "w") as test_data:
+        test_data.write("aaaaa\n" "tabc\n" "abd fgthy abf ab.g wey fvs qhy zxc. hjy")
+    expected_result = [
+        "fgthy",
+        "tabc",
+        "abd",
+        "abf",
+        "abg",
+        "wey",
+        "fvs",
+        "qhy",
+        "zxc",
+        "hjy",
+    ]
+    actual_result = get_longest_diverse_words("hw2/test_task_1_data.txt")
     assert actual_result == expected_result
 
 
+def test_get_rarest_char():
+    with open("test_task_1_data.txt", "w") as test_data:
+        test_data.write("111222!333!444")
+    expected_result = "!"
+    actual_result = get_rarest_char("test_task_1_data.txt")
+    assert actual_result == expected_result
 
 
+def test_count_punctuation_chars():
+    with open("test_task_1_data.txt", "w") as test_data:
+        test_data.write("111222!333!444")
+    expected_result = 2
+    actual_result = count_punctuation_chars("test_task_1_data.txt")
+    assert actual_result == expected_result
 
 
-# @pytest.mark.parametrize(
-#     ("file_name", "expected_result"),
-#     [
-#         ("hw2/test_task_1_data.txt", result),
-#     ],
-# )
+def test_count_punctuation_chars_alternative_1():
+    with open("test_task_1_data.txt", "w") as test_data:
+        test_data.write("111222!333!444")
+    expected_result = 2
+    actual_result = count_punctuation_chars_alternative_1("test_task_1_data.txt")
+    assert actual_result == expected_result
 
 
+def test_count_non_ascii_chars():
+    with open("test_task_1_data.txt", "w") as test_data:
+        test_data.write("111222\\u2014333\\u2014444")
+    expected_result = 2
+    actual_result = count_non_ascii_chars("test_task_1_data.txt")
+    assert actual_result == expected_result
 
 
+def test_get_most_common_non_ascii_char():
+    with open("test_task_1_data.txt", "w") as test_data:
+        test_data.write("111222\\u00bb333\\u00bbbbb\\u00df")
+    expected_result = "»"
+    actual_result = get_most_common_non_ascii_char("test_task_1_data.txt")
+    assert actual_result == expected_result
