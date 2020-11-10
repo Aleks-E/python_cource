@@ -22,6 +22,7 @@ def test_get_longest_diverse_words():
         "qhy",
         "zxc",
         "hjy",
+        "222"
     ]
     actual_result = get_longest_diverse_words("hw2/test_task_1_data.txt")
     assert actual_result == expected_result
