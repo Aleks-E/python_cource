@@ -28,40 +28,40 @@ def test_get_longest_diverse_words():
 
 
 def test_get_rarest_char():
-    with open("test_task_1_data.txt", "w") as test_data:
+    with open("hw2/test_task_1_data.txt", "w") as test_data:
         test_data.write("111222!333!444")
     expected_result = "!"
-    actual_result = get_rarest_char("test_task_1_data.txt")
+    actual_result = get_rarest_char("hw2/test_task_1_data.txt")
     assert actual_result == expected_result
 
 
 def test_count_punctuation_chars():
-    with open("test_task_1_data.txt", "w") as test_data:
+    with open("hw2/test_task_1_data.txt", "w") as test_data:
         test_data.write("111222!333!444")
     expected_result = 2
-    actual_result = count_punctuation_chars("test_task_1_data.txt")
+    actual_result = count_punctuation_chars("hw2/test_task_1_data.txt")
     assert actual_result == expected_result
 
 
 def test_count_punctuation_chars_alternative_1():
-    with open("test_task_1_data.txt", "w") as test_data:
+    with open("hw2/test_task_1_data.txt", "w") as test_data:
         test_data.write("111222!333!444")
     expected_result = 2
-    actual_result = count_punctuation_chars_alternative_1("test_task_1_data.txt")
+    actual_result = count_punctuation_chars_alternative_1("hw2/test_task_1_data.txt")
     assert actual_result == expected_result
 
 
 def test_count_non_ascii_chars():
-    with open("test_task_1_data.txt", "w") as test_data:
+    with open("hw2/test_task_1_data.txt", "w") as test_data:
         test_data.write("111222\\u2014333\\u2014444")
     expected_result = 2
-    actual_result = count_non_ascii_chars("test_task_1_data.txt")
+    actual_result = count_non_ascii_chars("hw2/test_task_1_data.txt")
     assert actual_result == expected_result
 
 
 def test_get_most_common_non_ascii_char():
-    with open("test_task_1_data.txt", "w") as test_data:
+    with open("hw2/test_task_1_data.txt", "w") as test_data:
         test_data.write("111222\\u00bb333\\u00bbbbb\\u00df")
     expected_result = "»"
-    actual_result = get_most_common_non_ascii_char("test_task_1_data.txt")
+    actual_result = get_most_common_non_ascii_char("hw2/test_task_1_data.txt")
     assert actual_result == expected_result
