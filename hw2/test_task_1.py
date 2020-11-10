@@ -1,6 +1,6 @@
-import pytest
-
 from hw2.task_1 import get_longest_diverse_words
+
+import pytest
 
 with open("hw2/test_task_1_data.txt", "w") as test_data:
     test_data.write("aaaaa\n" "tabc\n" "abd fgthy abf ab.g wey fvs qhy zxc. hjy")
@@ -10,7 +10,7 @@ result = ["fgthy", "tabc", "abd", "abf", "abg", "wey", "fvs", "qhy", "zxc", "hjy
 
 
 @pytest.mark.parametrize(
-    ["file_name", "expected_result"],
+    ("file_name", "expected_result"),
     [
         ("hw2/test_task_1_data.txt", result),
     ],
