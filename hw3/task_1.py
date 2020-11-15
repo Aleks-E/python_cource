@@ -40,17 +40,17 @@ def dec_2(n):
             nonlocal count
             # a = 0
             while True:
-                print('in while_1')
+                # print('in while_1')
                 a = func()
                 # print(a)
                 while count:
-                    print('in while_2')
+                    # print('in while_2')
                     if count == n:
                         # print('ok_1')
                         # func()
                         count -= 1
-                        print(a)
-                        # return a
+                        # print(a)
+                        return a
                     else:
                         # func()
                         count -= 1
@@ -67,9 +67,9 @@ def func():
 
 
 print(func())
-# print(func())
-# print(func())
-# print(func())
+print(func())
+print(func())
+print(func())
 # print(func())
 # print(func())
 # print(func())
