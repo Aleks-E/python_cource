@@ -16,5 +16,4 @@ def sum_of_numbers(n: int) -> int:
     pool = Pool(500)
     answer = sum(pool.map(slow_calculate, list(range(n))))
     pool.close()
-    pool.join()
     return answer
