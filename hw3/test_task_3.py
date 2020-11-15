@@ -3,44 +3,44 @@ from hw3.task_3 import make_filter
 import pytest
 
 
-data_0 = [{"name": "Bill", "last_name": "Gilbert"}, {"name": "polly", "type": "bird"}]
-result_0 = [{"name": "polly", "type": "bird"}]
+right_input_and_filter_data = [{"name": "Bill", "last_name": "Gilbert"}, {"name": "polly", "type": "bird"}]
+result_right_input_and_filter_data = [{"name": "polly", "type": "bird"}]
 
-data_1 = [{"name": "Bill", "last_name": "Gilbert"}, {"name_1": "polly", "type": "bird"}]
-result_1 = []
+incorrect_input_initial_key = [{"name": "Bill", "last_name": "Gilbert"}, {"name_1": "polly", "type": "bird"}]
+result_incorrect_input_initial_key = []
 
-data_2 = [{"name": "Bill", "last_name": "Gilbert"}, {"name": "polly_1", "type": "bird"}]
-result_2 = []
+incorrect_input_initial_value = [{"name": "Bill", "last_name": "Gilbert"}, {"name": "polly_1", "type": "bird"}]
+result_incorrect_input_initial_value = []
 
-data_3 = [{"name": "Bill", "last_name": "Gilbert"}, {"name": "polly"}]
-result_3 = []
+missing_input_value = [{"name": "Bill", "last_name": "Gilbert"}, {"name": "polly"}]
+result_missing_input_value = []
 
-data_4 = [{"name": "Bill", "last_name": "Gilbert"}]
-result_4 = []
+missing_input_item = [{"name": "Bill", "last_name": "Gilbert"}]
+result_missing_input_item = []
 
 
 @pytest.mark.parametrize(
     ("data", "expected_result"),
     [
-        (data_0, result_0),
-        (data_1, result_1),
-        (data_2, result_2),
-        (data_3, result_3),
-        (data_4, result_4),
+        (right_input_and_filter_data, result_right_input_and_filter_data),
+        (incorrect_input_initial_key, result_incorrect_input_initial_key),
+        (incorrect_input_initial_value, result_incorrect_input_initial_value),
+        (missing_input_value, result_missing_input_value),
+        (missing_input_item, result_missing_input_item),
     ],
 )
-def test(data, expected_result):
+def test_make_filter(data, expected_result):
     actual_result = make_filter(name="polly", type="bird").apply(data)
     assert actual_result == expected_result
 
 
-def test_1():
+def test_wrong_input_filter_key():
     data = [{"name": "Bill", "last_name": "Gilbert"}, {"name": "polly", "type": "bird"}]
     actual_result = make_filter(name_1="polly").apply(data)
     assert actual_result == []
 
 
-def test_2():
+def test_wrong_input_filter_value():
     data = [{"name": "Bill", "last_name": "Gilbert"}, {"name": "polly", "type": "bird"}]
     actual_result = make_filter(name="polly_1").apply(data)
     assert actual_result == []
