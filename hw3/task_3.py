@@ -32,20 +32,16 @@ def make_filter(**keywords: dict) -> object:
 
         def keyword_filter_func(key: str, value: dict) -> None:
             def keyword_filter_func_inner(input_item: dict) -> bool:
-                return False if key not in input_item else True if input_item[key] == value else False
+                return (
+                    False
+                    if key not in input_item
+                    else True
+                    if input_item[key] == value
+                    else False
+                )
 
             filter_funcs.append(keyword_filter_func_inner)
 
         keyword_filter_func(key, value)
 
     return Filter(filter_funcs)
-
-
-# def a(x):
-#     if x in [1, 2, 3]:
-#         return True
-#     return False
-#
-# print(a(4))
-
-
