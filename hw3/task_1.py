@@ -1,108 +1,27 @@
-# def dec_2(n):
-#     def dec_1(func):
-#         count = n
-#         def inner():
-#             nonlocal count
-#             a = 0
-#             while True:
-#                 while count:
-#                     if count == n:
-#                         print('ok_1')
-#                         func()
-#                         count -= 1
-#                         return n
-#                     else:
-#                         func()
-#                         count -= 1
-#                         return n
-#                 count = n
-#
-#         return inner
-#     return dec_1
-#
-#
-# @dec_2(3)
-# def func():
-#     return int(input('? '))
-#
-#
-# func()      # ok_1
-#             # ?
-# func()      # ?
-# func()      # ?
+def number_of_iter_set(number_of_iterations: int) -> object:
+    def cache(func: object) -> object:
+        count_iteration = number_of_iterations
+        cached_number = 0
 
-# ---------------------------------
-
-def dec_2(n):
-    def dec_1(func):
-        count = n
-        def inner():
-            nonlocal count
-            # a = 0
+        def iter_check() -> int:
+            nonlocal count_iteration
+            nonlocal cached_number
             while True:
-                # print('in while_1')
-                a = func()
-                # print(a)
-                while count:
-                    # print('in while_2')
-                    if count == n:
-                        # print('ok_1')
-                        # func()
-                        count -= 1
-                        # print(a)
-                        return a
+                while count_iteration:
+                    if count_iteration == number_of_iterations:
+                        cached_number = func()
+                        count_iteration -= 1
+                        return cached_number
                     else:
-                        # func()
-                        count -= 1
-                        return a
-                count = n
+                        count_iteration -= 1
+                        return cached_number
+                count_iteration = number_of_iterations
 
-        return inner
-    return dec_1
+        return iter_check
 
-
-@dec_2(3)
-def func():
-    return int(input('? '))
+    return cache
 
 
-print(func())
-print(func())
-print(func())
-print(func())
-# print(func())
-# print(func())
-# print(func())
-# print(func())
-# print(func())
-# print(func())
-
-
-# func()      # ok_1
-#             # ?
-# func()      # ?
-# func()      # ?
-#
-# func()      # ok_1
-#             # ?
-# func()      # ?
-# func()      # ?
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+@number_of_iter_set(number_of_iterations=4)
+def input_number() -> int:
+    return int(input("? "))
