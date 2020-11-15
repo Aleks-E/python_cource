@@ -31,12 +31,12 @@ def make_filter(**keywords: dict) -> object:
     for key, value in keywords.items():
 
         def keyword_filter_func(key: str, value: dict) -> None:
-            def keyword_filter_func_1(value_1: dict) -> bool:
-                if key in value_1:
-                    return True if value_1[key] == value else False
+            def keyword_filter_func_inner(input_item: dict) -> bool:
+                if key in input_item:
+                    return True if input_item[key] == value else False
                 return False
 
-            filter_funcs.append(keyword_filter_func_1)
+            filter_funcs.append(keyword_filter_func_inner)
 
         keyword_filter_func(key, value)
 
