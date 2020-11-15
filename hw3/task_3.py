@@ -29,9 +29,7 @@ def make_filter(**keywords: dict) -> object:
         def keyword_filter_func(key: str, value: dict) -> None:
             def keyword_filter_func_1(value_1: dict) -> bool:
                 if key in value_1:
-                    if value_1[key] == value:
-                        return True
-                    return False
+                    return True if value_1[key] == value else False
                 return False
 
             filter_funcs.append(keyword_filter_func_1)
