@@ -11,7 +11,11 @@ class Filter:
         self.functions = functions
 
     def apply(self, data: dict) -> list:
-        return [item for item in data if all(functions(item) for functions in self.functions)]
+        return [
+            item
+            for item in data
+            if all(functions(item) for functions in self.functions)
+        ]
 
 
 # example of usage:
