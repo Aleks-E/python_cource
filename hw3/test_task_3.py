@@ -3,13 +3,22 @@ from hw3.task_3 import make_filter
 import pytest
 
 
-right_input_and_filter_data = [{"name": "Bill", "last_name": "Gilbert"}, {"name": "polly", "type": "bird"}]
+right_input_and_filter_data = [
+    {"name": "Bill", "last_name": "Gilbert"},
+    {"name": "polly", "type": "bird"},
+]
 result_right_input_and_filter_data = [{"name": "polly", "type": "bird"}]
 
-incorrect_input_initial_key = [{"name": "Bill", "last_name": "Gilbert"}, {"name_1": "polly", "type": "bird"}]
+incorrect_input_initial_key = [
+    {"name": "Bill", "last_name": "Gilbert"},
+    {"name_1": "polly", "type": "bird"},
+]
 result_incorrect_input_initial_key = []
 
-incorrect_input_initial_value = [{"name": "Bill", "last_name": "Gilbert"}, {"name": "polly_1", "type": "bird"}]
+incorrect_input_initial_value = [
+    {"name": "Bill", "last_name": "Gilbert"},
+    {"name": "polly_1", "type": "bird"},
+]
 result_incorrect_input_initial_value = []
 
 missing_input_value = [{"name": "Bill", "last_name": "Gilbert"}, {"name": "polly"}]
