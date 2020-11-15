@@ -35,10 +35,12 @@ def test(data, expected_result):
 
 
 def test_1():
-    actual_result = make_filter(name_1="polly").apply(data_0)
+    data = [{"name": "Bill", "last_name": "Gilbert"}, {"name": "polly", "type": "bird"}]
+    actual_result = make_filter(name_1="polly").apply(data)
     assert actual_result == []
 
 
 def test_2():
-    actual_result = make_filter(name="polly_1").apply(data_0)
+    data = [{"name": "Bill", "last_name": "Gilbert"}, {"name": "polly", "type": "bird"}]
+    actual_result = make_filter(name="polly_1").apply(data)
     assert actual_result == []
