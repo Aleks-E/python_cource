@@ -4,8 +4,6 @@ import struct
 import time
 from multiprocessing.dummy import Pool
 
-pool = Pool(1024)
-
 
 def slow_calculate(value: int) -> int:
     """Some weird voodoo magic calculations"""
@@ -15,4 +13,8 @@ def slow_calculate(value: int) -> int:
 
 
 def sum_of_numbers(n: int) -> int:
-    return sum(pool.map(slow_calculate, list(range(n))))
+    pool = Pool(1024)
+    answer = sum(pool.map(slow_calculate, list(range(n))))
+    pool.close()
+    pool.join()
+    return answer
