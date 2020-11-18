@@ -6,7 +6,7 @@ def cache(number_of_iterations: int) -> Callable:
         cached = []
         count_iteration = number_of_iterations
 
-        def cached_func(*args) -> object:
+        def cached_func(*args: object) -> object:
             nonlocal count_iteration
 
             while count_iteration:
