@@ -8,5 +8,7 @@ max-complexity = 7
 max-cognitive-complexity = 15
 per-file-ignores =
     test*: D10, D101, D103, S101, ANN
+    task_2.py: T001
+                     # print needed in task
 application-import-names = hw1
 doctests = True
