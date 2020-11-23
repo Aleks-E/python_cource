@@ -38,7 +38,7 @@ PEP8 соблюдать строго.
 давать логичные подходящие имена.
 """
 import datetime
-from typing import Callable, TypeVar
+from typing import Callable, Optional
 
 
 class Homework:
@@ -49,9 +49,6 @@ class Homework:
 
     def is_active(self) -> bool:
         return self.created + self.deadline > datetime.datetime.now()
-
-
-class_or_none = TypeVar("class_or_none", Homework, None)
 
 
 class Teacher:
@@ -68,5 +65,5 @@ class Student:
         self.first_name = first_name
         self.last_name = last_name
 
-    def do_homework(self, homework: Callable) -> class_or_none:
+    def do_homework(self, homework: Callable) -> Optional[Homework]:
         return homework if homework.is_active() else print("You are late")

@@ -40,7 +40,7 @@ def test_return_homework_by_the_student_before_deadline():
     teacher = Teacher("Daniil", "Shadrin")
     deadline_days = 1
     homework = teacher.create_homework("Learn functions", deadline_days)
-    assert student.do_homework(homework) is homework
+    assert student.do_homework(homework).__dir__ == homework.__dir__
 
 
 def test_student_print_out_after_deadline(capsys):
