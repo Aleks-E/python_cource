@@ -11,10 +11,7 @@ def test_store_original_func_info():
     name_of_function_without_decorator = custom_sum.__name__
     doc_of_function_without_decorator = custom_sum.__doc__
 
-    @print_result
-    def custom_sum(*args):
-        """This function can sum any objects which have __add___"""
-        return functools.reduce(lambda x, y: x + y, args)
+    custom_sum = print_result(custom_sum)
 
     name_of_function_with_decorator = custom_sum.__name__
     doc_of_function_with_decorator = custom_sum.__doc__
@@ -29,7 +26,7 @@ def test_store_original_func():
         """This function can sum any objects which have __add___"""
         return functools.reduce(lambda x, y: x + y, args)
 
-    assert custom_sum.__original_func(1, 2, 3) == custom_sum(1, 2, 3)
+    assert custom_sum.__original_func.__eq__(custom_sum)
 
 
 def test_print_out_without_decorator(capsys):

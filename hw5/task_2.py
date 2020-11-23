@@ -15,20 +15,20 @@ print(custom_sum.__doc__)  # 'This function can sum any objects which have __add
 print(custom_sum.__name__)  # 'custom_sum'
 print(custom_sum.__original_func)  # <function custom_sum at <some_id>>
 """
-from typing import Callable, TypeVar
-
-number = TypeVar("number", int, float, complex)
+from functools import wraps
+from typing import Callable, Union
 
 
 def print_result(func: Callable) -> Callable:
     def store_original_func_info(wrapper: Callable) -> Callable:
-        wrapper.__name__ = func.__name__
-        wrapper.__doc__ = func.__doc__
         wrapper.__original_func = func
         return wrapper
 
     @store_original_func_info
-    def wrapper(*args: number, **kwargs: any) -> number:
+    @wraps(func)
+    def wrapper(
+        *args: Union[int, float, complex], **kwargs: any
+    ) -> Union[int, float, complex]:
         """Function-wrapper which print result of an original function"""
         result = func(*args, **kwargs)
         print(result)
