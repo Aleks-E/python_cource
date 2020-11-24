@@ -14,44 +14,18 @@ assert combinations([1, 2], [3, 4]) == [
     [2, 4],
 ]
 """
-from typing import List, Any
+from typing import Any, List
+
 
 def combinations(*args: List[Any]) -> List[List]:
-    # print('args', args)
-    # print('*args', *args)
-    a = [[]]
+    result_combinations = [[]]
 
-    for y in args:
-        b = y
-        m = []
-        for i in a:
-            for j in b:
-                m.append([*i, j])
-        a = m
-    return a
-
-
-
-
-
-# print(combinations([]))
-# a = ([], [])
-# print(combinations(*a))
-#
-# a = ([],)
-# print(combinations(*a))
-#
-#
-# print(combinations([], []))
-# print(combinations([1, 2], [3, 4]))
-
-
-print(combinations([1, 2], [], [3, 4]))
-
-
-
-
-
-
-
-
+    for item in args:
+        if not item:
+            continue
+        new_combinations = []
+        for result_item in result_combinations:
+            for inner_item in item:
+                new_combinations.append([*result_item, inner_item])
+        result_combinations = new_combinations
+    return result_combinations
