@@ -53,73 +53,97 @@ import datetime
 from typing import Callable
 from collections import defaultdict
 
-DeadlineError = Exception
+class DeadlineError(Exception):
+    ...
 
 class Personal_Info:
-    def __init__(self, first_name: str, last_name: str):
+    def __init__(self, first_name: str, last_name: str):        # ok
         self.first_name = first_name
         self.last_name = last_name
 
 
 class Teacher(Personal_Info):
-    def __init__(self, first_name, last_name):
-        super().__init__(first_name, last_name)
-        # self.homework_done = {}
-        self.homework_done = defaultdict()
+    homework_done = defaultdict(list)
 
-    def create_homework(self, text: str, days: int) -> Callable:
+    def create_homework(self, text: str, days: int) -> Callable:            # ok
         return Homework(text, days)
 
-    def check_homework(self, result):
+    @classmethod
+    def check_homework(cls, result):
         if len(result.solution) > 5:
-            # self.homework_done = True
-            # self.homework_done[result.text] = True
-            self.homework_done[result.homework] = result
+            if result.homework not in cls.homework_done:
+                cls.homework_done[result.homework].append(result)
+            elif result not in cls.homework_done[result.homework]:
+                cls.homework_done[result.homework].append(result)
+
+            # cls.homework_done[result.homework].append(result)
             return True
         else:
             return False
 
-    def reset_results(self, homework=None):
+    @classmethod
+    def reset_results(cls, homework=None):
         if homework is None:
-            self.homework_done = {}
+            cls.homework_done.clear()
         else:
-            self.homework_done[homework] = None
+            del cls.homework_done[homework]
 
 
 class Homework:
-    def __init__(self, text: str, deadline: int):
+    def __init__(self, text: str, deadline: int):       # ok
         self.text = text
         self.deadline = datetime.timedelta(deadline)
         self.created = datetime.datetime.now()
 
-    def is_active(self) -> bool:
+    def is_active(self) -> bool:                        # ok
         return self.created + self.deadline > datetime.datetime.now()
 
 
-
 class Student(Personal_Info):
-    def do_homework(self, homework: Homework, solution: str) -> Callable:
-        # return homework if homework.is_active() else print("You are late")
+    def do_homework(self, homework: Homework, solution: str) -> Callable:       # ok
+        # if not homework.is_active():
+        #     raise DeadlineError('You are late')
 
+        # return HomeworkResult(homework, self, solution)
+        result = HomeworkResult(homework, self, solution)           # Review
         if not homework.is_active():
             raise DeadlineError('You are late')
-
-        return HomeworkResult(homework, homework.text, solution)
-
-
-
+        return result
 
 
 class HomeworkResult:
-    def __init__(self, homework: Callable, text: str, solution: str):
+    def __init__(self, homework: Homework, author: Student, solution: str):     # ok
         if not isinstance(homework, Homework):
             raise Exception('You gave a not Homework object')
         else:
             self.homework = homework
-            self.text = text      # ?
+            self.author = author
             self.solution = solution
-        # author - ?
-        # created - ?
+            self.created = datetime.datetime.now()
+
+
+
+"""
+1 Домашнее задание, переданное студенту, неправильного типа
+
+
+
+
+1 Просрочено домашнее задание
+
+
+1 Результат записался в homework_done
+2 Результат содержит правильный ответ
+3 Результат принадлежит конкретному студенту
+4 Результат относится к конкретной работе
+
+
+"""
+
+
+
+
+
 
 
 
@@ -127,57 +151,140 @@ class HomeworkResult:
 
 
 # opp_teacher = Teacher('Daniil', 'Shadrin')
-# advanced_python_teacher = Teacher('Aleksandr', 'Smetanin')
+# print('Teacher_personal_info\t', opp_teacher.first_name, opp_teacher.last_name)
 #
 # lazy_student = Student('Roman', 'Petrov')
-# good_student = Student('Lev', 'Sokolov')
+# print('Student_personal_info\t', lazy_student.first_name, lazy_student.last_name)
 #
-# oop_hw = opp_teacher.create_homework('Learn OOP', 1)        # created Homework
+# oop_hw = opp_teacher.create_homework('Learn OOP', 0)
+# # result = lazy_student.do_homework(lazy_student, 'I have done this hw')       # Exception: You gave a not Homework object
+#
+# # result = lazy_student.do_homework(oop_hw, 'I have done this hw')            #     raise DeadlineError('You are late')
+#                                                                             # Exception: You are late
+#
+# oop_hw = opp_teacher.create_homework('Learn OOP', 1)
+# print('oop_hw\t', oop_hw)
+# print('oop_hw_attr\t', oop_hw.text, oop_hw.deadline, oop_hw.created)
+#
+#
+# result = lazy_student.do_homework(oop_hw, '12345')
+# print('result_1\t', result)
+# print('result_1_attr\t', result.homework, result.author, result.solution, result.created)
+#
+# print(opp_teacher.check_homework(result))     # False
+# print(opp_teacher.homework_done)                # defaultdict(None, {})
+#
+#
+#
+# result = lazy_student.do_homework(oop_hw, 'I have done this hw')
+# print(opp_teacher.check_homework(result))     # True
+# print(opp_teacher.homework_done)                # defaultdict(None, {<__main__.HomeworkResult object at 0x0000000002148208>: True})
+#
+#
+# advanced_python_teacher = Teacher('Aleksandr', 'Smetanin')
+# good_student = Student('Lev', 'Sokolov')
 # docs_hw = opp_teacher.create_homework('Read docs', 5)
 #
-# result_1 = good_student.do_homework(oop_hw, 'I have done this hw')             #  # created HomeworkResult
 # result_2 = good_student.do_homework(docs_hw, 'I have done this hw too')
-# result_3 = lazy_student.do_homework(docs_hw, 'done')
-# try:
-#     result_4 = HomeworkResult(good_student, "fff", "Solution")
-# except Exception:
-#     print('There was an exception here')
+# result_3 = lazy_student.do_homework(docs_hw, 'done   ')
 #
-# opp_teacher.check_homework(result_1)
-# temp_1 = opp_teacher.homework_done
-# print('temp_1', temp_1)
-#
-# advanced_python_teacher.check_homework(result_1)
-# temp_2 = advanced_python_teacher.homework_done
-# print('temp_2', temp_2)
-# assert temp_1 == temp_2
-#
+# opp_teacher.check_homework(result_2)
 # opp_teacher.check_homework(result_2)
 # opp_teacher.check_homework(result_3)
 #
-# print(opp_teacher.homework_done)
-# print(opp_teacher.homework_done[oop_hw])
-
-
-
-# ----------------------------
-# teacher = Teacher("Daniil", "Shadrin")
-# homework = teacher.create_homework("Learn functions", 1)
-# student = Student("Roman", "Petrov")
 #
-# # print(HomeworkResult(homework, "fff", "Solution"))
+# print(advanced_python_teacher.homework_done)
 #
-# result = student.do_homework(homework, 'text', '123456')
 #
-# print(teacher.check_homework(result))
+# for i in advanced_python_teacher.homework_done:
+#     print('i\t', i, advanced_python_teacher.homework_done[i])
 #
-# print(teacher.homework_done)
-# ----------------------------
+#
+# Teacher.reset_results()
+# print(advanced_python_teacher.homework_done)
+#
+# opp_teacher.check_homework(result_2)
+# print(advanced_python_teacher.homework_done)
+#
+# opp_teacher.check_homework(result_3)
+# opp_teacher.check_homework(result)
+# print(advanced_python_teacher.homework_done)
+#
+# Teacher.reset_results(oop_hw)
+# print(advanced_python_teacher.homework_done)
 
 
 
 
 
+
+
+
+
+
+
+
+
+
+# ---------------------------------
+# def func(arg):
+#     if arg < 0:
+#         raise Exception('www')
+#
+# # func(-4)
+# ---------------------------------
+
+
+
+
+
+# ---------------------------------
+# class MyClass:
+#     @staticmethod
+#     def ex_static_method():
+#         print("static method")
+#
+#     @classmethod
+#     def ex_class_method(cls):
+#         print("class method")
+# ---------------------------------
+
+
+
+# defdict = defaultdict(list)
+#
+# class A:
+#     my_list = []
+#
+#     # @classmethod
+#     def adder(cls, arg):
+#         cls.my_list.append(arg)
+
+
+# a_1 = A()
+# a_2 = A()
+#
+# print(A.my_list)
+# print(a_1.my_list)
+# print(a_2.my_list)
+#
+# a_1.adder(1)
+# print(A.my_list)
+# print(a_1.my_list)
+# print(a_2.my_list)
+#
+# a_2.adder(2)
+# print(A.my_list)
+# print(a_1.my_list)
+# print(a_2.my_list)
+#
+# print(a_1.my_list is a_2.my_list)
+# ------------------------------
+
+
+
+# ====================================================================
+# ------------------------------
 
 # defdict = defaultdict(list)
 #
@@ -185,29 +292,75 @@ class HomeworkResult:
 #     defdict[i].append(i)
 #
 # print(defdict)
+
+# ------------------------------
+
+# my_str = 'qwertyqw'
+# d = defaultdict(int)
+# for key in my_str:
+#     d[key] += 1
 #
+# print(d)
+
+# ------------------------------
+
+# d = defaultdict(int)
+# d['a'] += 3
+# print(d)
+
+# ---------------------------
+
+# d = defaultdict(list)
+# d['a'].append(3)
+# d['a'] += [5, 7]
+# print(d)
+
+# ---------------------------
+
+# d = defaultdict(int)
+# print(d['r'])               # 0
+
+# ---------------------------
+
+# def a():
+#     return 22
 #
+# defdict = defaultdict(a)
 #
-#
+# print(defdict['q'])     # 22
+# ---------------------------
+
 # class A:
-#     # def __init__(self, arg):
-#     #     self.arg = arg
-#
-#     def ret(self, arg):
-#         return arg ** 2
+#     def a(self):
+#         return 33
 #
 #
+# defdict = defaultdict(A().a)
 #
-# defdict = defaultdict(A)
-#
-# for i in range(5):
-#     defdict[i].ret(i)
-#
+# print(defdict['q'])     # 33
 # print(defdict)
 
+# ---------------------------
+
+# defdict = defaultdict(bool)
+#
+# # defdict('1')
+#
+# print(defdict['1'])
+# print(defdict)
+
+# ---------------------------
 
 
 
+
+# defdict = defaultdict(list)
+#
+#
+# defdict['1']
+#
+#
+# print(defdict)
 
 
 
