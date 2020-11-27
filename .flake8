@@ -1,6 +1,8 @@
 [flake8]
 ignore = E203, E501, W503,  # handled by black
          ANN101, ANN204
+         S322,
+         T001               # print needed in homework
 exclude =
     *_venv
     venv_*
