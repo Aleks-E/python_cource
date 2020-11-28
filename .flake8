@@ -8,5 +8,9 @@ max-complexity = 7
 max-cognitive-complexity = 15
 per-file-ignores =
     test*: D10, D101, D103, S101, ANN
+    hw6/task_2.py:  R504
+                # R504 Variable "instance_count_old" in reset_instances_counter uses only as a return value.
+                # But we need use variable "instance_count_old" because we need store variable "cls.instance_count"
+                # and then reset variable "cls.instance_count"
 application-import-names = hw1
 doctests = True
