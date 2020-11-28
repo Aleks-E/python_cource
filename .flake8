@@ -8,5 +8,9 @@ max-complexity = 7
 max-cognitive-complexity = 15
 per-file-ignores =
     test*: D10, D101, D103, S101, ANN
+    hw6/task_1.py:  R504
+                # R504 Variable "result" in Student.do_homework uses only as a return value.
+                # But we need use Variable "result" to call "HomeworkResult" and check if
+                # it raise exception and not to call "HomeworkResult" twice.
 application-import-names = hw1
 doctests = True
