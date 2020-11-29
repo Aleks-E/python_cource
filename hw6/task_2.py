@@ -37,25 +37,26 @@ class SomeClass:
 
 
 def instances_counter(decorating_class: Type[SomeClass]) -> modified_class:
-    class ModifiedClass(decorating_class):
+    class InitInstanceCount:
         instance_count = 0
 
+    class ModifiedClass(decorating_class):
         def __init__(self, *args: any, **kwargs: any):
             super().__init__(*args, **kwargs)
             self.init_instance_count()
 
         @classmethod
         def init_instance_count(cls: modified_class) -> None:
-            cls.instance_count += 1
+            InitInstanceCount.instance_count += 1
 
         @classmethod
         def get_created_instances(cls: modified_class) -> int:
-            return cls.instance_count
+            return InitInstanceCount.instance_count
 
         @classmethod
         def reset_instances_counter(cls: modified_class) -> int:
-            instance_count_old = cls.instance_count
-            cls.instance_count = 0
+            instance_count_old = InitInstanceCount.instance_count
+            InitInstanceCount.instance_count = 0
             return instance_count_old
 
     return ModifiedClass
