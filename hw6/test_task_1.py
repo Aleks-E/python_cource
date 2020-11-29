@@ -1,6 +1,6 @@
 import datetime
 
-from hw6.task_1 import DeadlineError, HomeworkResult, ObjectError, Student, Teacher
+from hw6.task_1 import DeadlineError, HomeworkResult, Student, Teacher
 
 import pytest
 
@@ -21,7 +21,7 @@ def test_student_attribute():
 
 def test_wrong_object_of_homework():
     lazy_student = Student("Roman", "Petrov")
-    with pytest.raises(ObjectError, match="You gave a not Homework object"):
+    with pytest.raises(TypeError, match="You gave a not Homework object"):
         lazy_student.do_homework(1, "solution")
 
 
