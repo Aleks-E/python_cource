@@ -51,14 +51,10 @@ PEP8 соблюдать строго.
 """
 import datetime
 from collections import defaultdict
-from typing import TypeVar
 
 
 class DeadlineError(Exception):
     ...
-
-
-teacher = TypeVar("teacher", bound="Teacher")
 
 
 class PersonalInfo:
@@ -101,21 +97,20 @@ class HomeworkResult:
 
 
 class Teacher(PersonalInfo):
-    homework_done = defaultdict(list)
+    homework_done = defaultdict(set)
 
     def create_homework(self, text: str, days: int) -> "Homework":
         return Homework(text, days)
 
     @classmethod
-    def check_homework(cls: teacher, result: HomeworkResult) -> bool:
+    def check_homework(cls: "Teacher", result: HomeworkResult) -> bool:
         if len(result.solution) > 5:
-            if not (result in cls.homework_done[result.homework]):
-                cls.homework_done[result.homework].append(result)
+            cls.homework_done[result.homework].add(result)
             return True
         return False
 
     @classmethod
-    def reset_results(cls: teacher, homework: Homework = None) -> None:
+    def reset_results(cls: "Teacher", homework: Homework = None) -> None:
         cls.homework_done.clear() if homework is None else cls.homework_done.pop(
             homework
         )

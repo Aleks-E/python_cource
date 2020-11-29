@@ -20,9 +20,8 @@ def test_student_attribute():
 
 
 def test_wrong_object_of_homework():
-    lazy_student = Student("Roman", "Petrov")
     with pytest.raises(TypeError, match="You gave a not Homework object"):
-        lazy_student.do_homework(1, "solution")
+        Student("Roman", "Petrov").do_homework(1, "solution")
 
 
 def test_expired_deadline_of_homework():
@@ -62,7 +61,7 @@ def test_right_result_of_the_homework():
     solution = "123456"
     result = lazy_student.do_homework(oop_hw, solution)
     assert opp_teacher.check_homework(result)
-    assert opp_teacher.homework_done[oop_hw] == [result]
+    assert opp_teacher.homework_done[oop_hw] == {result}
 
 
 def test_the_same_homework_completed_by_two_students():
@@ -76,7 +75,7 @@ def test_the_same_homework_completed_by_two_students():
     result_2 = good_student.do_homework(oop_hw, solution)
     opp_teacher.check_homework(result_1)
     opp_teacher.check_homework(result_2)
-    assert opp_teacher.homework_done[oop_hw] == [result_1, result_2]
+    assert opp_teacher.homework_done[oop_hw] == {result_1, result_2}
 
 
 def test_different_homework_completed_by_different_students():
@@ -91,8 +90,8 @@ def test_different_homework_completed_by_different_students():
     result_2 = good_student.do_homework(docs_hw, solution)
     opp_teacher.check_homework(result_1)
     opp_teacher.check_homework(result_2)
-    assert opp_teacher.homework_done[oop_hw] == [result_1]
-    assert opp_teacher.homework_done[docs_hw] == [result_2]
+    assert opp_teacher.homework_done[oop_hw] == {result_1}
+    assert opp_teacher.homework_done[docs_hw] == {result_2}
 
 
 def test_different_homework_completed_by_one_student():
@@ -106,8 +105,8 @@ def test_different_homework_completed_by_one_student():
     result_2 = lazy_student.do_homework(docs_hw, solution)
     opp_teacher.check_homework(result_1)
     opp_teacher.check_homework(result_2)
-    assert opp_teacher.homework_done[oop_hw] == [result_1]
-    assert opp_teacher.homework_done[docs_hw] == [result_2]
+    assert opp_teacher.homework_done[oop_hw] == {result_1}
+    assert opp_teacher.homework_done[docs_hw] == {result_2}
 
 
 def test_the_same_homework_result():
@@ -119,7 +118,7 @@ def test_the_same_homework_result():
     result = lazy_student.do_homework(oop_hw, solution)
     opp_teacher.check_homework(result)
     opp_teacher.check_homework(result)
-    assert opp_teacher.homework_done[oop_hw] == [result]
+    assert opp_teacher.homework_done[oop_hw] == {result}
 
 
 def test_reset_results_of_definite_homework():
@@ -133,29 +132,43 @@ def test_reset_results_of_definite_homework():
     result_2 = lazy_student.do_homework(docs_hw, solution)
     opp_teacher.check_homework(result_1)
     opp_teacher.check_homework(result_2)
-    assert opp_teacher.homework_done[oop_hw] == [result_1]
-    assert opp_teacher.homework_done[docs_hw] == [result_2]
+    assert opp_teacher.homework_done[oop_hw] == {result_1}
+    assert opp_teacher.homework_done[docs_hw] == {result_2}
     opp_teacher.reset_results(oop_hw)
-    assert opp_teacher.homework_done[oop_hw] == []
-    assert opp_teacher.homework_done[docs_hw] == [result_2]
+    assert opp_teacher.homework_done[oop_hw] == set()
+    assert opp_teacher.homework_done[docs_hw] == {result_2}
 
 
-def test_reset_results_of_all_homework():
+@pytest.fixture()
+def oop_hw():
     opp_teacher = Teacher("Daniil", "Shadrin")
-    lazy_student = Student("Roman", "Petrov")
     deadline = 1
-    oop_hw = opp_teacher.create_homework("Learn OOP", deadline)
-    docs_hw = opp_teacher.create_homework("Read docs", deadline)
+    return opp_teacher.create_homework("Learn OOP", deadline)
+
+
+@pytest.fixture()
+def docs_hw():
+    opp_teacher = Teacher("Daniil", "Shadrin")
+    deadline = 1
+    return opp_teacher.create_homework("Read docs", deadline)
+
+
+@pytest.fixture()
+def lazy_student():
+    return Student("Roman", "Petrov")
+
+
+def test_reset_results_of_all_homework(oop_hw, docs_hw, lazy_student):
     solution = "123456"
     result_1 = lazy_student.do_homework(oop_hw, solution)
     result_2 = lazy_student.do_homework(docs_hw, solution)
-    opp_teacher.check_homework(result_1)
-    opp_teacher.check_homework(result_2)
-    assert opp_teacher.homework_done[oop_hw] == [result_1]
-    assert opp_teacher.homework_done[docs_hw] == [result_2]
-    opp_teacher.reset_results()
-    assert opp_teacher.homework_done[oop_hw] == []
-    assert opp_teacher.homework_done[docs_hw] == []
+    Teacher.check_homework(result_1)
+    Teacher.check_homework(result_2)
+    assert Teacher.homework_done[oop_hw] == {result_1}
+    assert Teacher.homework_done[docs_hw] == {result_2}
+    Teacher.reset_results()
+    assert Teacher.homework_done[oop_hw] == set()
+    assert Teacher.homework_done[docs_hw] == set()
 
 
 def test_is_the_list_of_homework_results_common_to_all_teachers():
@@ -178,11 +191,8 @@ def test_attribute_homework_result():
 
 def test_attribute_homework():
     opp_teacher = Teacher("Daniil", "Shadrin")
-    lazy_student = Student("Roman", "Petrov")
     text_of_homework = "Learn OOP"
     deadline = 1
     oop_hw = opp_teacher.create_homework(text_of_homework, deadline)
-    solution = "123456"
-    result = lazy_student.do_homework(oop_hw, solution)
-    assert result.homework.text == text_of_homework
-    assert result.homework.deadline == datetime.timedelta(days=deadline)
+    assert oop_hw.text == text_of_homework
+    assert oop_hw.deadline == datetime.timedelta(days=deadline)
