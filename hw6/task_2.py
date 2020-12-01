@@ -27,7 +27,7 @@ if __name__ == '__main__':
     user.reset_instances_counter()  # 3
 """
 
-from typing import Type, TypeVar
+from typing import TypeVar
 
 modified_class = TypeVar("modified_class", bound="ModifiedClass")
 
@@ -36,27 +36,31 @@ class SomeClass:
     ...
 
 
-def instances_counter(decorating_class: Type[SomeClass]) -> modified_class:
-    class InitInstanceCount:
-        instance_count = 0
-
+def instances_counter(decorating_class: "SomeClass") -> "modified_class":
     class ModifiedClass(decorating_class):
         def __init__(self, *args: any, **kwargs: any):
             super().__init__(*args, **kwargs)
+            self.instance_count_old = None
             self.init_instance_count()
 
-        @classmethod
-        def init_instance_count(cls: modified_class) -> None:
-            InitInstanceCount.instance_count += 1
+        class InitInstanceCount:
+            instance_count = 0
+            instance_count_old = None
 
         @classmethod
-        def get_created_instances(cls: modified_class) -> int:
-            return InitInstanceCount.instance_count
+        def init_instance_count(cls: "ModifiedClass") -> None:
+            cls.InitInstanceCount.instance_count += 1
 
         @classmethod
-        def reset_instances_counter(cls: modified_class) -> int:
-            instance_count_old = InitInstanceCount.instance_count
-            InitInstanceCount.instance_count = 0
-            return instance_count_old
+        def get_created_instances(cls: "ModifiedClass") -> int:
+            return cls.InitInstanceCount.instance_count
+
+        @classmethod
+        def reset_instances_counter(cls: "ModifiedClass") -> int:
+            cls.InitInstanceCount.instance_count_old = (
+                cls.InitInstanceCount.instance_count
+            )
+            cls.InitInstanceCount.instance_count = 0
+            return cls.InitInstanceCount.instance_count_old
 
     return ModifiedClass
