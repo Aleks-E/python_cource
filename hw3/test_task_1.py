@@ -6,17 +6,21 @@ from unittest.mock import Mock
 
 
 
-def test_my():
+
+
+
+def test_number_of_times_the_cached_value_returned():
     mock = Mock()
 
-    @cache(number_of_iterations=2)
+    @cache(number_of_iterations=1)
     def func():
         mock()
 
-    value_1 = func()
+    func()
+    func()
     assert mock.call_count == 1
-
-
+    func()
+    assert mock.call_count == 2
 
 
 

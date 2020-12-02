@@ -76,6 +76,7 @@ def cache(number_of_iterations: int) -> Callable:
                 if count_iteration == 0:
                     result = func(*args)
                     count_iteration = number_of_iterations
+                    return result
                 if count_iteration > 0:
                     count_iteration -= 1
                     return result
