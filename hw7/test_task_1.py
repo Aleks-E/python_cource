@@ -41,6 +41,25 @@ def test_mismatching_tree_value_and_required_value(tree, expected_result):
 @pytest.mark.parametrize(
     ("tree", "expected_result"),
     [
+        ({"1": "blue", "2": "red"}, 1),
+        ({"1": ["blue", "red"]}, 1),
+        ({"1": [["blue", "red"]]}, 1),
+        ({"1": [{"1": "blue", "2": "red"}]}, 1),
+        ({"1": {"1": "blue", "2": "red"}}, 1),
+        ({"1": {"1": ["blue", "red"]}}, 1),
+        ({"1": {"1": {"1": "blue", "2": "red"}}}, 1),
+    ],
+)
+def test_the_correctness_of_the_work_of_finding_the_required_value_with_other_values_in_the_tree(
+    tree, expected_result
+):
+    actual_result = find_occurrences(tree, "red")
+    assert actual_result == expected_result
+
+
+@pytest.mark.parametrize(
+    ("tree", "expected_result"),
+    [
         ({"1": "red", "2": "red"}, 2),
         ({"1": ["red", "red"]}, 2),
         ({"1": [["red", "red"]]}, 2),
