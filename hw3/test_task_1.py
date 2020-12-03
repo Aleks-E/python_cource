@@ -1,54 +1,43 @@
+from unittest.mock import Mock
+
 from hw3.task_1 import cache
 
 
-from unittest.mock import Mock
+def test_the_returned_value_from_the_function_and_from_the_cache_are_equal():
+    @cache(number_of_iterations=1)
+    def func(arg):
+        return arg
+
+    value_from_the_function = func(1)
+    value_from_the_cache = func(2)
+    assert value_from_the_function == value_from_the_cache
 
 
+def test_the_function_returns_new_value_after_required_number_of_function_calls():
+    @cache(number_of_iterations=1)
+    def func(arg):
+        return arg
+
+    value_from_the_first_call = func(1)
+    assert value_from_the_first_call == 1
+
+    old_value_with_new_arg = func(2)
+    assert old_value_with_new_arg == value_from_the_first_call
+
+    new_value_from_the_function = func(2)
+    assert new_value_from_the_function == 2
 
 
-
-
-
-def test_number_of_times_the_cached_value_returned():
+def test_the_function_returns_a_value_from_the_cache_required_number_of_times():
     mock = Mock()
 
     @cache(number_of_iterations=1)
     def func():
         mock()
 
-    func()
-    func()
+    call_of_function = func()
     assert mock.call_count == 1
-    func()
+    return_cached_value = func()
+    assert mock.call_count == 1
+    new_call_of_function = func()
     assert mock.call_count == 2
-
-
-
-
-
-# @cache(number_of_iterations=2)
-# def funk(number):
-#     return number + 1
-#
-#
-# def test_cache_number_of_iterations():
-#     arg_of_func = 2
-#     results = []
-#     result_call_of_func_1 = funk(arg_of_func)
-#     results.append(result_call_of_func_1)
-#
-#     result_call_of_func_2 = funk(arg_of_func)
-#     results.append(result_call_of_func_2)
-#
-#     result_call_of_func_3 = funk(arg_of_func)
-#     results.append(result_call_of_func_3)
-#
-#     assert results == [3, 3, None]
-#
-#
-# def test_cache_id_of_numbers():
-#     arg_of_func = 2
-#     result_call_of_func_1 = funk(arg_of_func)
-#     result_call_of_func_2 = funk(arg_of_func)
-#
-#     assert result_call_of_func_1 is result_call_of_func_2

@@ -8,6 +8,10 @@ exclude =
 max-complexity = 7
 max-cognitive-complexity = 15
 per-file-ignores =
-    test*: D10, D101, D103, S101, ANN
+    test*: D10, D101, D103, S101, ANN,
+           F841
+                    # F841: local variables in the
+                    # "test_the_function_returns_a_value_from_the_cache_required_number_of_times"
+                    # needed for more readability
 application-import-names = hw1
 doctests = True
