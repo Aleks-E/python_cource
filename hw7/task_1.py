@@ -44,7 +44,7 @@ def find_occurrences(tree: dict, element: Any) -> int:
             if isinstance(item, (list, set, tuple)):
                 tree_new.extend(item)
             if isinstance(item, dict):
-                tree_new.append(list(item.values()))
+                tree_new.extend(list(item.values()))
             if item == element:
                 count_occurrences += 1
         tree_temp = tree_new
