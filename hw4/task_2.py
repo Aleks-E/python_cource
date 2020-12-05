@@ -28,26 +28,29 @@ You will learn:
 import urllib.request
 
 
-
-
 def count_dots_on_i(url: str) -> int:
-    with urllib.request.urlopen(url) as response:
-        print(response.getcode())   # 200
+    try:
+        with urllib.request.urlopen(url) as response:
+            html_content = response.read().decode()
+            number_of_symbols = 0
+            for symbol in html_content:
+                if symbol == "i":
+                    number_of_symbols += 1
+            return number_of_symbols
+    except:
+        raise ValueError(f"Unreachable {url}")
 
-        html_content = response.read().decode("utf-8")
 
-        number_of_symbols = 0
-        for symbol in html_content:
-            if symbol == "i":
-                number_of_symbols += 1
 
-        return number_of_symbols
+
 
 
 
 
 
 url = "https://example.com/"
+# url = "1"
+
 
 print(count_dots_on_i(url))
 
