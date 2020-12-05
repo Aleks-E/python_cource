@@ -25,16 +25,16 @@ You will learn:
 **** https://docs.python.org/3/tutorial/errors.html#raising-exceptions
 """
 
+import os
+
 
 def read_magic_number(path: str) -> bool:
+    file_existence = os.path.exists(path)
+
+    if not file_existence:
+        raise ValueError("file is not exist")
+
     with open(path) as data:
-        print(data)
+        line = data.readline()
 
-
-with open('test.txt', 'w') as test_file:
-    test_file.write('1111')
-
-
-
-
-
+        return True if 3 > float(line) >= 1 else False
