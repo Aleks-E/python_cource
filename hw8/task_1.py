@@ -30,14 +30,20 @@ import string
 import os
 
 
-with open("text.txt", "w") as text:
+# with open("text.txt", "w") as text:
     # text.write("name=kek\nlast_name=top\nsong_name=shadilay\npower=9001\n1=something")
     # text.write("name=kek\nlast_name=top\nsong_name=shadilay\npower=9001\n1=something\n__init__=3")
     # text.write("name=kek")
     # text.write("\n\n name=kek\n\nname1=kek1")
-    text.write("\n")
+    # text.write("\n")
 
-os.remove("text.txt")
+# os.remove("text.txt")
+
+
+# with open("text.txt", "w") as text:
+#     text.write("name=kek")
+
+
 
 class KeyValueStorage:
     def __init__(self, path_to_file):
@@ -49,7 +55,7 @@ class KeyValueStorage:
                     # print('1234')
                     continue
                 key, value = line.rstrip().split("=")
-                print('key', list(key), key[0])
+                # print('key', list(key), key[0])
 
 
                 if not (key.startswith((*string.ascii_letters, "_")) and key.endswith(
@@ -72,6 +78,13 @@ class KeyValueStorage:
 
 
 
+
+# storage = KeyValueStorage("text.txt")
+
+# print(storage.name)
+# print(storage["name"])
+
+# print(storage.name == "kek")
 
 
 
