@@ -37,9 +37,9 @@ from typing import Any
 
 def find_occurrences(tree: dict, element: Any) -> int:
     tree_temp = list(tree.values())
-    tree_new = []
     count_occurrences = 0
     while tree_temp:
+        tree_new = []
         for item in tree_temp:
             if isinstance(item, (list, set, tuple)):
                 tree_new.extend(item)
@@ -48,5 +48,4 @@ def find_occurrences(tree: dict, element: Any) -> int:
             if item == element:
                 count_occurrences += 1
         tree_temp = tree_new
-        tree_new = []
     return count_occurrences
