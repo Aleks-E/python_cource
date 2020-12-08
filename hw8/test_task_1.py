@@ -93,6 +93,19 @@ def test_file_includes_lines_with_invalid_key_attributes(test_file, invalid_key_
 
 
 
+# a = [11, 22]
+
+a = {"1": 11, "2": 22}
+
+
+print(a.index(11))
+
+
+
+
+
+
+
 
 
 
