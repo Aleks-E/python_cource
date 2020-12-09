@@ -16,30 +16,62 @@ def test_file():
     os.remove(file_path)
 
 
+@pytest.mark.parametrize(
+    ("key_name"),
+    [
+        (""),
+        (" name"),
+        ("1name"),
+        ("!name"),
+        ("na!me"),
+        ("na me"),
+        ("name "),
+        ("name!"),
+    ],
+)
+def test_file_includes_strings_with_invalid_key_attributes(test_file, key_name):
+    with open(test_file, "w") as data:
+        data.write(f"{key_name}=kek")
+
+    with pytest.raises(ValueError, match=f"Invalid Key Name: '{key_name}'"):
+        KeyValueStorage(test_file)
+
+
+def test_file_includes_strings_with_missing_separator(test_file):
+    with open(test_file, "w") as data:
+        data.write("nn")
+
+    with pytest.raises(ValueError, match="not enough values to unpack"):
+        KeyValueStorage(test_file)
+
+
+
 # @pytest.mark.parametrize(
-#     ("text"),
+#     ("string"),
 #     [
-#         ("name=kek"),
+#         ("nn=rr="),
+#         ("nn==rr"),
 #     ],
 # )
-# def test_wrong_input_str(test_file, text):
+# def test_too_many_values_to_unpack(test_file, string):
 #     with open(test_file, "w") as data:
-#         # data.write("name=kek\nlast_name=top")
-#         data.write(text)
+#         data.write(f"{string}")
 #
-#         # storage = KeyValueStorage(test_file)
-#     storage = KeyValueStorage("hw8/test.txt")
-#
-#         # assert storage.name == "kek"
-#     assert storage["name"] == "kek"
-#         # assert storage.last_name == "top"
+#     with pytest.raises(ValueError, match="too many values to unpack"):
+#         KeyValueStorage(test_file)
 
 
 
 
-def test_input_file_does_not_exsist():
-    with pytest.raises(FileNotFoundError, match="No such file or directory: 'qqq.txt'"):
-        KeyValueStorage("qqq.txt")
+
+
+
+
+
+
+
+
+# ----------------
 
 
 
@@ -49,59 +81,111 @@ def test_input_file_is_empty(test_file):        # review
 
 
 
-def test_right_input_str(test_file):
-    with open(test_file, "w") as data:
-        data.write("name=kek\nlast_name=top")
-
-    storage = KeyValueStorage(test_file)
-    assert storage["name"] == "kek"
-    assert storage["last_name"] == "top"
-    assert storage.name == "kek"
-    assert storage.last_name == "top"
-
-
-
-def test_file_included_empty_lines(test_file):
-    with open(test_file, "w") as data:
-        data.write("\n\nname=kek\n\nlast_name=top\n\n")
-
-    storage = KeyValueStorage(test_file)
-    assert storage["name"] == "kek"
-    assert storage["last_name"] == "top"
-    assert storage.name == "kek"
-    assert storage.last_name == "top"
-
 
 
 
 
 @pytest.mark.parametrize(
-    ("invalid_key_name"),
+    ("file_content"),
     [
-        (" name"),
-        ("1name"),
-        ("!name"),
-        ("!name ")
+        ("name=kek\nlast_name=top"),
+        ("\n\nname=kek\n\nlast_name=top\n\n"),
     ],
 )
-def test_file_includes_lines_with_invalid_key_attributes(test_file, invalid_key_name):
+def test_right_input_str(test_file, file_content):
     with open(test_file, "w") as data:
-        data.write(f"{invalid_key_name}=kek")
+        data.write(file_content)
 
-    with pytest.raises(ValueError, match=f"Invalid Key Name: '{invalid_key_name}'"):
-        KeyValueStorage(test_file)
-
-
-
-# a = [11, 22]
-
-a = {"1": 11, "2": 22}
-
-
-print(a.index(11))
+    storage = KeyValueStorage(test_file)
+    assert storage["name"] == "kek"
+    assert storage["last_name"] == "top"
+    assert storage.name == "kek"
+    assert storage.last_name == "top"
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+# @pytest.mark.parametrize(
+#     ("string"),
+#     [
+#         ("nn=rr="),
+#         ("nn==rr"),
+#     ],
+# )
+# def test_too_many_values_to_unpack(test_file, string):
+#     with open(test_file, "w") as data:
+#         data.write(f"{string}")
+#
+#     with pytest.raises(ValueError, match="too many values to unpack"):
+#         KeyValueStorage(test_file)
+
+
+
+
+
+
+
+# @pytest.fixture()
+# def ValueError_message():
+#     return "key_name"
+
+
+
+
+
+# @pytest.mark.parametrize(
+#     ("ValueError_message", "ValueError_Message"),
+#     [
+#         ("", f"Invalid Key Name: '{ValueError_message}'"),
+#         # (" name", f"Invalid Key Name: '{key_name}'"),
+#         # ("1name", f"Invalid Key Name: '{key_name}'"),
+#         # ("!name", f"Invalid Key Name: '{key_name}'"),
+#         # ("na!me", f"Invalid Key Name: '{key_name}'"),
+#         # ("na me", f"Invalid Key Name: '{key_name}'"),
+#         # ("name ", f"Invalid Key Name: '{key_name}'"),
+#         # ("name!", f"Invalid Key Name: '{key_name}'")
+#     ],
+# )
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+# def test_missing_key_attribute(test_file):
+#     with open(test_file, "w") as data:
+#         key_name = "name "
+#         data.write("=kek")
+#
+#     # storage = KeyValueStorage(test_file)
+#     assert storage["name"] == "kek"
+#
+#     with pytest.raises(ValueError, match=f"Invalid Key Name: '{key_name}'"):
+#         KeyValueStorage(test_file)
+
+    # with
 
 
 
