@@ -17,12 +17,20 @@ assert = custom_range(string.ascii_lowercase, 'p', 'g', -2) == ['p', 'n', 'l', '
 from typing import Union
 
 
-def custom_range(
-    iterable: Union[str, list, tuple],
-    start: Union[str, int] = None,
-    stop: Union[str, int] = None,
-    step: int = 1,
-) -> list:
-    index_start = iterable.index(start) if start is not None else 0
-    index_stop = iterable.index(stop) if stop is not None else -1
-    return list(iterable[index_start:index_stop:step])
+def custom_range(iterable: Union[str, list, tuple], *args: (int,)) -> list:
+    if len(args) == 1:
+        index_start = 0
+        index_stop = iterable.index(args[0])
+        index_step = 1
+
+    if len(args) == 2:
+        index_start = iterable.index(args[0])
+        index_stop = iterable.index(args[1])
+        index_step = 1
+
+    if len(args) == 3:
+        index_start = iterable.index(args[0])
+        index_stop = iterable.index(args[1])
+        index_step = args[2]
+
+    return list(iterable[index_start:index_stop:index_step])
