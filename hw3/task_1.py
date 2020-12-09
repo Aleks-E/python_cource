@@ -30,22 +30,23 @@ from collections.abc import Callable
 
 
 def cache(number_of_iterations: int) -> Callable:
-    def iter_set(func: Callable) -> Callable:
-        count_iteration = 0
-        result = None
+    def cache_variables(func: Callable) -> Callable:
+        cached_result = {}
+        number_of_returned_results = {}
 
-        def cached_func(*args: object) -> object:
-            nonlocal count_iteration
-            nonlocal result
-            while True:
-                if count_iteration == 0:
-                    result = func(*args)
-                    count_iteration = number_of_iterations
-                    return result
-                if count_iteration > 0:
-                    count_iteration -= 1
-                    return result
+        def cached_func(*args: any, **kwargs: any) -> any:
+            if args not in cached_result:
+                number_of_returned_results[args] = 0
+
+            if number_of_returned_results[args] == 0:
+                cached_result[args] = func(*args, **kwargs)
+                number_of_returned_results[args] = number_of_iterations
+
+            elif number_of_returned_results[args] > 0:
+                number_of_returned_results[args] -= 1
+
+            return cached_result[args]
 
         return cached_func
 
-    return iter_set
+    return cache_variables
