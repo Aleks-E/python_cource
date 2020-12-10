@@ -27,26 +27,10 @@ File size is expected to be small, you are permitted to read it entirely into me
 """
 import string
 
-import os
-
-
-# with open("text.txt", "w") as text:
-#     text.write("name=kek\nlast_name=top\nsong_name=shadilay\npower=9001\nnn")
-# text.write("name=kek\nlast_name=top\nsong_name=shadilay\npower=9001\n1=something\n__init__=3")
-# text.write("name=kek")
-# text.write("\n\n name=kek\n\nname1=kek1")
-# text.write("\n")
-
-# os.remove("text.txt")
-
-
-# with open("text.txt", "w") as text:
-#     text.write("=name")
-
 
 class KeyValueStorage:
-    def __init__(self, path_to_file):
-        with open(path_to_file, "r") as data:
+    def __init__(self, file_path: str):
+        with open(file_path, "r") as data:
             self.storage = {}
             for line in data:
                 if line == "\n":
@@ -54,17 +38,18 @@ class KeyValueStorage:
                 key, value = line.rstrip().split("=")
 
                 if not (
-                    not bool([
-                        letter
-                        for letter in key
-                        if letter not in (*string.ascii_letters, "_", *string.digits)
-                    ])
+                    not bool(
+                        [
+                            letter
+                            for letter in key
+                            if letter
+                            not in (*string.ascii_letters, "_", *string.digits)
+                        ]
+                    )
                     and not key.startswith((*string.digits,))
                     and key != ""
                 ):
                     raise ValueError(f"Invalid Key Name: '{key}'")
-
-                # *string.whitespace, string.punctuation
 
                 if value.isdigit():
                     value = int(value)
@@ -73,40 +58,8 @@ class KeyValueStorage:
                     setattr(self, key, value)
                     self.storage.__setitem__(key, value)
 
-    def __setitem__(self, key, value):
+    def __setitem__(self, key: str, value: str):
         self.storage[key] = value
 
-    def __getitem__(self, key):
+    def __getitem__(self, key: str):
         return self.storage[key]
-
-
-
-# KeyValueStorage('text.txt')
-
-
-
-
-
-
-#
-# 'not enough values to unpack (expected 2, got 1)' does not match
-# 'not enough values to unpack (expected 2, got 1)'
-
-
-
-
-q = "qw=er=ty"
-
-q = q.split('=')
-print(q)
-
-
-
-
-
-
-
-
-
-
-
