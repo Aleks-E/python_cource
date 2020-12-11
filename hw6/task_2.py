@@ -27,16 +27,12 @@ if __name__ == '__main__':
     user.reset_instances_counter()  # 3
 """
 
-from typing import TypeVar
+from typing import TypeVar, Type
 
 modified_class = TypeVar("modified_class", bound="ModifiedClass")
 
 
-class SomeClass:
-    ...
-
-
-def instances_counter(decorating_class: "SomeClass") -> "modified_class":
+def instances_counter(decorating_class: Type) -> "modified_class":
     class ModifiedClass(decorating_class):
         __instance_count = 0
 
