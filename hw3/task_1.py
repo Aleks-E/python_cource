@@ -35,17 +35,19 @@ def cache(number_of_iterations: int) -> Callable:
         number_of_returned_results = {}
 
         def cached_func(*args: any, **kwargs: any) -> any:
-            if args not in cached_result:
-                number_of_returned_results[args] = 0
+            if (args, tuple(kwargs.items())) not in cached_result:
+                number_of_returned_results[(args, tuple(kwargs.items()))] = 0
 
-            if number_of_returned_results[args] == 0:
-                cached_result[args] = func(*args, **kwargs)
-                number_of_returned_results[args] = number_of_iterations
+            if number_of_returned_results[(args, tuple(kwargs.items()))] == 0:
+                cached_result[(args, tuple(kwargs.items()))] = func(*args, **kwargs)
+                number_of_returned_results[
+                    (args, tuple(kwargs.items()))
+                ] = number_of_iterations
 
-            elif number_of_returned_results[args] > 0:
-                number_of_returned_results[args] -= 1
+            elif number_of_returned_results[(args, tuple(kwargs.items()))] > 0:
+                number_of_returned_results[(args, tuple(kwargs.items()))] -= 1
 
-            return cached_result[args]
+            return cached_result[(args, tuple(kwargs.items()))]
 
         return cached_func
 
