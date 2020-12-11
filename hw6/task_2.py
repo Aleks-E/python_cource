@@ -50,8 +50,8 @@ def instances_counter(decorating_class: "SomeClass") -> "modified_class":
 
         @classmethod
         def reset_instances_counter(cls: "ModifiedClass") -> int:
-            cls.__instance_count_old = cls.__instance_count
+            instance_count_old = cls.__instance_count
             cls.__instance_count = 0
-            return cls.__instance_count_old
+            return instance_count_old
 
     return ModifiedClass
