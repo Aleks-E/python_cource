@@ -27,7 +27,7 @@ if __name__ == '__main__':
     user.reset_instances_counter()  # 3
 """
 
-from typing import TypeVar, Type
+from typing import Type, TypeVar
 
 modified_class = TypeVar("modified_class", bound="ModifiedClass")
 
