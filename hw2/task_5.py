@@ -23,12 +23,12 @@ def custom_range(iterable: Union[str, list, tuple], *args: (int,)) -> list:
         index_stop = iterable.index(args[0])
         index_step = 1
 
-    if len(args) == 2:
+    elif len(args) == 2:
         index_start = iterable.index(args[0])
         index_stop = iterable.index(args[1])
         index_step = 1
 
-    if len(args) == 3:
+    elif len(args) == 3:
         index_start = iterable.index(args[0])
         index_stop = iterable.index(args[1])
         index_step = args[2]
