@@ -39,7 +39,6 @@ class SomeClass:
 def instances_counter(decorating_class: "SomeClass") -> "modified_class":
     class ModifiedClass(decorating_class):
         __instance_count = 0
-        __instance_count_old = None
 
         def __init__(self, *args: any, **kwargs: any):
             super().__init__(*args, **kwargs)
