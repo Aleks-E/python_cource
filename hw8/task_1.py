@@ -37,19 +37,7 @@ class KeyValueStorage:
                     continue
                 key, value = line.rstrip().split("=")
 
-                if not (
-                    not bool(
-                        [
-                            letter
-                            for letter in key
-                            if letter
-                            not in (*string.ascii_letters, "_", *string.digits)
-                        ]
-                    )
-                    and not key.startswith((*string.digits,))
-                    and key != ""
-                ):
-                    raise ValueError(f"Invalid Key Name: '{key}'")
+                self.key_name_checker(key)
 
                 if value.isdigit():
                     value = int(value)
@@ -63,3 +51,19 @@ class KeyValueStorage:
 
     def __getitem__(self, key: str):
         return self.storage[key]
+
+    def key_name_checker(self, key: str) -> None:
+        if bool(
+            [
+                letter
+                for letter in key
+                if letter not in (*string.ascii_letters, "_", *string.digits)
+            ]
+        ):
+            raise ValueError(f"Invalid Key Name: '{key}'")
+
+        if key == "":
+            raise ValueError(f"Invalid Key Name: '{key}'")
+
+        if key[0].isdigit():
+            raise ValueError(f"Invalid Key Name: '{key}'")
