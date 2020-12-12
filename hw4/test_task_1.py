@@ -9,9 +9,13 @@ import pytest
 @pytest.fixture()
 def test_file():
     file_path = "hw4/test.txt"
-    with open(file_path, "w"):
-        ...
-    yield file_path
+
+    def write_content(content):
+        with open(file_path, "w") as data:
+            data.write(content)
+            return file_path
+
+    yield write_content
     os.remove(file_path)
 
 
@@ -24,11 +28,9 @@ def test_file():
     ],
 )
 def test_number_in_the_diapazone(test_file, text, expected_result):
-    with open(test_file, "w") as data:
-        data.write(text)
-
-    actual_result = read_magic_number(test_file)
-    assert actual_result
+    file_patch = test_file(text)
+    actual_result = read_magic_number(file_patch)
+    assert expected_result == actual_result
 
 
 @pytest.mark.parametrize(
@@ -41,29 +43,19 @@ def test_number_in_the_diapazone(test_file, text, expected_result):
     ],
 )
 def test_number_is_not_in_the_diapazone(test_file, text, expected_result):
-    with open(test_file, "w") as data:
-        data.write(text)
-
-    actual_result = read_magic_number(test_file)
-    assert not actual_result
+    file_patch = test_file(text)
+    actual_result = read_magic_number(file_patch)
+    assert expected_result == actual_result
 
 
 def test_read_str_is_empty(test_file):
-    with open(test_file, "w") as data:
-        data.write("")
-
+    file_patch = test_file("")
     with pytest.raises(ValueError, match="could not convert string to float: ''"):
-        read_magic_number(test_file)
+        read_magic_number(file_patch)
 
 
 def test_read_str_is_not_number(test_file):
-    with open(test_file, "w") as data:
-        data.write("q")
+    file_patch = test_file("q")
 
     with pytest.raises(ValueError, match="could not convert string to float: 'q'"):
-        read_magic_number(test_file)
-
-
-def test_file_did_not_exist():
-    with pytest.raises(ValueError, match="file is not exist"):
-        read_magic_number("hw4/test.txt")
+        read_magic_number(file_patch)

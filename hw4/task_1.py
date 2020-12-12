@@ -29,9 +29,7 @@ import os
 
 
 def read_magic_number(path: str) -> bool:
-    file_existence = os.path.exists(path)
-
-    if not file_existence:
+    if not os.path.exists(path):
         raise ValueError("file is not exist")
 
     with open(path) as data:
