@@ -59,8 +59,6 @@ Avoid reading entire table into memory. When iterating through records, start re
 When writing tests, it's not always neccessary to mock database calls completely. Use supplied example.sqlite file as database fixture file.
 """
 import sqlite3
-
-
 from typing import TypeVar
 
 cursor = TypeVar("cursor")
@@ -80,7 +78,9 @@ class TableData:
                 return data[1:]
 
     def __len__(self):
-        cursor = self.database_connection(f"SELECT count(*) FROM {self.table_name}")
+        cursor = self.database_connection(
+            "SELECT count(*) FROM {}".format(self.table_name)
+        )
         return cursor.fetchone()[0]
 
     def __iter__(self):
