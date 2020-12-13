@@ -68,46 +68,41 @@ class TableData:
     def __init__(self, database_name: str, table_name: str):
         self.database_name = database_name
         self.table_name = table_name
+        self.row = {}
 
     def __getitem__(self, key: str):
-        cursor = self.database_connection(f"SELECT name, * FROM {self.table_name}")
-
-        data = True
-        while data is not None:
-            data = cursor.fetchone()
-            if data[0] == key:
-                return data[1:]
+        cursor = self.database_connection(
+            f"SELECT * FROM {self.table_name} WHERE name=:name", {"name": key}
+        )
+        return cursor.fetchone()
 
     def __len__(self):
         cursor = self.database_connection(f"SELECT count(*) FROM {self.table_name}")
         return cursor.fetchone()[0]
 
     def __iter__(self):
-        self.row = {}
-        self.cursor = self.database_connection(f"SELECT name, * FROM {self.table_name}")
+        self.cursor = self.database_connection(f"SELECT * FROM {self.table_name}")
         return self
 
     def __next__(self):
-        self.data = self.cursor.fetchone()
-
-        if self.data is not None:
-            self.row["name"] = self.data[0]
-            self.row["row"] = self.data[1:]
+        data = self.cursor.fetchone()
+        if data is not None:
+            self.row["name"] = data[0]
+            self.row["row"] = data
             return self.row
         raise StopIteration
 
     def __contains__(self, key: str):
         cursor = self.database_connection(f"SELECT name FROM {self.table_name}")
-
-        self.data = True
-        while self.data is not None:
-            self.data = cursor.fetchone()
-            if self.data is not None and self.data[0] == key:
+        data = True
+        while data is not None:
+            data = cursor.fetchone()
+            if data is not None and data[0] == key:
                 return True
         return False
 
-    def database_connection(self, request: str) -> cursor:
+    def database_connection(self, *args: str) -> cursor:
         with sqlite3.connect(self.database_name) as conn:
             cursor = conn.cursor()
-            cursor.execute(request)
+            cursor.execute(*args)
             return cursor

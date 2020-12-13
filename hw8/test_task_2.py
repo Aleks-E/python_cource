@@ -42,3 +42,13 @@ def test_calls_reflects_the_recent_data():
         assert len(presidents) == 4
         cursor.execute("DELETE FROM presidents WHERE name = '1'")
         conn.commit()
+
+
+def test_if_president_with_the_same_name_not_exists_in_table(database_wrapper):
+    assert "1" not in database_wrapper
+
+
+def test_retrieve_single_data_row_with_not_existent_name_from_name_column(
+    database_wrapper,
+):
+    assert database_wrapper["1"] is None
