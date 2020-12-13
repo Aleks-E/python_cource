@@ -5,7 +5,7 @@ exclude =
     *_venv
     venv_*
 max-complexity = 7
-max-cognitive-complexity = 15
+max-cognitive-complexity = 30
 per-file-ignores =
     test*: D10, D101, D103, S101, ANN
 application-import-names = hw1
