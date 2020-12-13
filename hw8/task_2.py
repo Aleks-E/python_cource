@@ -60,9 +60,10 @@ When writing tests, it's not always neccessary to mock database calls completely
 """
 import sqlite3
 
+
 from typing import TypeVar
 
-
+cursor = TypeVar("cursor")
 
 
 class TableData:
@@ -106,7 +107,7 @@ class TableData:
                 return True
         return False
 
-    def database_connection(self, request: str) -> :
+    def database_connection(self, request: str) -> cursor:
         with sqlite3.connect(self.database_name) as conn:
             cursor = conn.cursor()
             cursor.execute(request)
