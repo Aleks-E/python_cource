@@ -70,9 +70,7 @@ class TableData:
         self.table_name = table_name
 
     def __getitem__(self, key: str):
-        cursor = self.database_connection(
-            "SELECT name, * FROM " + self.table_name
-        )
+        cursor = self.database_connection("SELECT name, * FROM " + self.table_name)
         data = True
         while data is not None:
             data = cursor.fetchone()
