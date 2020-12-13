@@ -70,7 +70,9 @@ class TableData:
         self.table_name = table_name
 
     def __getitem__(self, key: str):
-        cursor = self.database_connection(f"SELECT name, * FROM {self.table_name}")
+        cursor = self.database_connection(
+            "SELECT name, * FROM {}".format(self.table_name)
+        )
         data = True
         while data is not None:
             data = cursor.fetchone()
@@ -100,7 +102,7 @@ class TableData:
         raise StopIteration
 
     def __contains__(self, key: str):
-        cursor = self.database_connection(f"SELECT name FROM {self.table_name}")
+        cursor = self.database_connection("SELECT name FROM {}".format(self.table_name))
 
         self.data = True
         while self.data is not None:
