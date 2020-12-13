@@ -85,7 +85,9 @@ class TableData:
 
     def __iter__(self):
         self.row = {}
-        self.cursor = self.database_connection("SELECT name, * FROM {}".format(self.table_name))
+        self.cursor = self.database_connection(
+            "SELECT name, * FROM {}".format(self.table_name)
+        )
         return self
 
     def __next__(self):
