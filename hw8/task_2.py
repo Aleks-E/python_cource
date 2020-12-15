@@ -93,13 +93,11 @@ class TableData:
         raise StopIteration
 
     def __contains__(self, key: str):
-        cursor = self.database_connection(f"SELECT name FROM {self.table_name}")
-        data = True
-        while data is not None:
-            data = cursor.fetchone()
-            if data is not None and data[0] == key:
-                return True
-        return False
+        cursor = self.database_connection(
+            f"SELECT name FROM {self.table_name} WHERE name = '{key}'"
+        )
+        data = cursor.fetchone()
+        return True if data is not None and data[0] == key else False
 
     def database_connection(self, *args: str) -> cursor:
         with sqlite3.connect(self.database_name) as conn:
