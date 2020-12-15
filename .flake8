@@ -8,5 +8,7 @@ max-complexity = 7
 max-cognitive-complexity = 15
 per-file-ignores =
     test*: D10, D101, D103, S101, ANN
+    hw8/task_2.py: S608
+            #SQL injection
 application-import-names = hw1
 doctests = True
