@@ -94,7 +94,7 @@ class TableData:
 
     def __contains__(self, key: str):
         cursor = self.database_connection(
-            f"SELECT name FROM {self.table_name} WHERE name = '{key}'"
+            f"SELECT name FROM {self.table_name} WHERE name=:name", {"name": key}
         )
         data = cursor.fetchone()
         return True if data is not None and data[0] == key else False
