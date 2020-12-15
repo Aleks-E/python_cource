@@ -9,27 +9,26 @@ For dir with two files from hw1.py:
 # >>> universal_file_counter(test_dir, "txt", str.split)
 6
 
-"""
-from typing import Callable, Optional
-
-
 # def universal_file_counter(
 #     dir_path: Path, file_extension: str, tokenizer: Optional[Callable] = None
 # ) -> int:
 #     pass
+"""
+from pathlib import Path
+from typing import Callable, Optional
 
 
 def universal_file_counter(
-    dir_path: str, file_extension: str, tokenizer: Optional[Callable] = None
+    dir_path: Path, file_extension: str, tokenizer: Optional[Callable] = None
 ) -> int:
     checked_str = ""
-    parts = 0
+    parts_counter = 0
     for path_next in dir_path.rglob(f"*.{file_extension}"):
-        parts += 1
-        with open(path_next, "r") as data:
-            while True:
-                symbol = data.read(1)
-                checked_str += symbol
+        parts_counter += 1
+        with open(str(path_next), "r") as data:
+            for line in data:
+                checked_str += line
+
                 str_part = (
                     checked_str.split("\n")
                     if tokenizer is None
@@ -38,10 +37,6 @@ def universal_file_counter(
 
                 if len(str_part) > 1:
                     checked_str = str_part[-1]
-                    parts = parts + len(str_part) - 1
+                    parts_counter = parts_counter + len(str_part) - 1
 
-                if not symbol:
-                    checked_str = ""
-                    break
-
-    return parts
+    return parts_counter
