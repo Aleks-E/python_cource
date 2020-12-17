@@ -8,8 +8,10 @@ max-complexity = 7
 max-cognitive-complexity = 15
 per-file-ignores =
     test*: D10, D101, D103, S101, ANN
-    hw9/test_task_2.py:  F821
-            # F821 (undefined name 'a') - needed for test
+
+    # F821 (undefined name 'a') - needed for test
+    # PT012 pytest.raises() block should contain a single simple statement - test of "with" operator is required
+    test_task_2.py: D10, D101, D103, S101, ANN, F821, PT012
 
 application-import-names = hw1
 doctests = True

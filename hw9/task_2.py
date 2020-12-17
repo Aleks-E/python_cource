@@ -7,27 +7,23 @@ Do it both ways: as a class and as a generator.
 
 """
 from contextlib import contextmanager
-from typing import Iterator, TypeVar
-
-ExcVal = TypeVar("ExcVal")
-ExcType = TypeVar("ExcType")
-ExcTb = TypeVar("ExcTb")
+from typing import Iterator
 
 
 class SuppressorClass:
-    def __init__(self, exc_val: ExcVal):
+    def __init__(self, exc_val: any):
         self.exc_val = exc_val
 
     def __enter__(self):
         ...
 
-    def __exit__(self, exc_type: ExcType, exc_val: ExcVal, exc_tb: ExcTb):
+    def __exit__(self, exc_type: any, exc_val: any, exc_tb: any):
         return isinstance(exc_val, self.exc_val)
 
 
 @contextmanager
-def suppressor_gen(exc_type: ExcType) -> Iterator:
+def suppressor_gen(exc: any) -> Iterator:
     try:
         yield
-    except exc_type:
+    except exc:
         ...
