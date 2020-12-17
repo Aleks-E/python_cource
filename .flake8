@@ -4,8 +4,8 @@ ignore = E203, E501, W503,  # handled by black
 exclude =
     *_venv
     venv_*
-max-complexity = 7
-max-cognitive-complexity = 15
+max-complexity = 15
+max-cognitive-complexity = 25
 per-file-ignores =
     test*: D10, D101, D103, S101, ANN
 application-import-names = hw1
