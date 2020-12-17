@@ -69,3 +69,8 @@ def test_both_files_have_the_same_numbers(test_file):
     assert list(merge_sorted_files([file_path[0], file_path[1]])) == [1, 2, 2]
     file_path = test_file("2", "1\n2")
     assert list(merge_sorted_files([file_path[0], file_path[1]])) == [1, 2, 2]
+
+
+def test_checking_if_strings_or_numbers_are_compared(test_file):
+    file_path = test_file("11", "2")
+    assert list(merge_sorted_files([file_path[0], file_path[1]])) == [2, 11]

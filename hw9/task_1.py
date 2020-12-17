@@ -21,7 +21,7 @@ def merge_sorted_files(file_list: List) -> Iterator:
     def get_number(file_path: str) -> Iterator:
         with open(file_path) as text:
             for line in text:
-                yield line.rstrip()
+                yield int(line.rstrip())
 
     number_iter_1 = iter(get_number(file_list[0]))
     number_iter_2 = iter(get_number(file_list[1]))
@@ -30,13 +30,13 @@ def merge_sorted_files(file_list: List) -> Iterator:
     while True:
         if number_1 is None:
             try:
-                number_1 = int(next(number_iter_1))
+                number_1 = next(number_iter_1)
             except StopIteration:
                 ...
 
         if number_2 is None:
             try:
-                number_2 = int(next(number_iter_2))
+                number_2 = next(number_iter_2)
             except StopIteration:
                 ...
 
