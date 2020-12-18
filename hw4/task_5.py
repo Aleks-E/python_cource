@@ -18,23 +18,16 @@ Definition of done:
 * https://en.wikipedia.org/wiki/Fizz_buzz
 ** https://www.youtube.com/watch?v=NSzsYWckGd4
 """
-from typing import Iterator, List
-
-
-def fizz_buzz_items(list_of_items: List[str]) -> Iterator:
-    while True:
-        for item in list_of_items:
-            yield item
+from itertools import cycle
+from typing import Iterator
 
 
 def fizzbuzz(number_of_items: int) -> Iterator:
-    fizz_iter, buzz_iter = iter(fizz_buzz_items(["", "", "Fizz"])), iter(
-        fizz_buzz_items(["", "", "", "", "Buzz"])
-    )
+    fizz_iter = cycle(["", "", "Fizz"])
+    buzz_iter = cycle(["", "", "", "", "Buzz"])
+
     for iteration in range(1, number_of_items + 1):
         fizz_buzz_item = next(fizz_iter) + next(buzz_iter)
-        item = {fizz_buzz_item: iteration}
-        try:
-            yield str(item[""])
-        except KeyError:
-            yield fizz_buzz_item
+        item = [fizz_buzz_item, str(iteration)]
+        item.sort()
+        yield item[1]
