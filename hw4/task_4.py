@@ -33,52 +33,39 @@ You will learn:
 """
 from typing import List
 
-import doctest
-import pytest
-
-# pytest --doctest-modules
+from itertools import cycle
 
 
-
-
-
-# python -m doctest -v hw4/task_4.py
-
-# pytest --doctest-glob="task_4.py"       # Запуск всех тестов
-
-
-
-def fizzbuzz(n: int) -> List[str]:
-    pass
-
-
-
-
-
-def a(arg):
+def fizzbuzz(number_of_items: int) -> List[str]:
     """
-    >>> a(4)
-    16
-    >>> a(5)
-    25
+    >>> fizzbuzz(5)
+    ['1', '2', 'Fizz', '4', 'Buzz']
+
     """
-    return arg * arg
+    fizz_iter = cycle(["", "", "Fizz"])
+    buzz_iter = cycle(["", "", "", "", "Buzz"])
+    items_list = []
+
+    for iteration in range(1, number_of_items + 1):
+        fizz_buzz_item = next(fizz_iter) + next(buzz_iter)
+        item = [fizz_buzz_item, str(iteration)]
+        item.sort()
+        items_list.append(item[1])
+    return items_list
 
 
-
-print(a(3))
-
+print(fizzbuzz(20))
 
 
-print(2)
+# pytest --doctest-glob="*.py"      # Проверяем во всех папках
+
+# pytest -v --doctest-modules hw4/task_4.py     # Запускаем doctest
+# pytest --doctest-modules hw4/task_4.py     # Запускаем doctest
 
 
-# print(doctest.testmod())
+#pytest --doctest-modules hw4/task_4.py hw4/test_task_4.py
 
-
-
-
-
+#pytest hw4/test_task_4.py --doctest-modules hw4/task_4.py
 
 
 
