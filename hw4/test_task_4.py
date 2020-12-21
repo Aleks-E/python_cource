@@ -2,6 +2,7 @@ from hw4.task_4 import fizzbuzz
 
 import pytest
 
+
 @pytest.mark.parametrize(
     "ordinal_number",
     [

@@ -31,16 +31,16 @@ You will learn:
 * https://en.wikipedia.org/wiki/Fizz_buzz
 ** Энциклопедия профессора Фортрана page 14, 15, "Робот Фортран, чисть картошку!"
 """
-from typing import List
-
 from itertools import cycle
+from typing import List
 
 
 def fizzbuzz(number_of_items: int) -> List[str]:
     """
     >>> fizzbuzz(5)
     ['1', '2', 'Fizz', '4', 'Buzz']
-
+    >>> fizzbuzz(15)[14]
+    'FizzBuzz'
     """
     fizz_iter = cycle(["", "", "Fizz"])
     buzz_iter = cycle(["", "", "", "", "Buzz"])
@@ -52,20 +52,3 @@ def fizzbuzz(number_of_items: int) -> List[str]:
         item.sort()
         items_list.append(item[1])
     return items_list
-
-
-print(fizzbuzz(20))
-
-
-# pytest --doctest-glob="*.py"      # Проверяем во всех папках
-
-# pytest -v --doctest-modules hw4/task_4.py     # Запускаем doctest
-# pytest --doctest-modules hw4/task_4.py     # Запускаем doctest
-
-
-#pytest --doctest-modules hw4/task_4.py hw4/test_task_4.py
-
-#pytest hw4/test_task_4.py --doctest-modules hw4/task_4.py
-
-
-
