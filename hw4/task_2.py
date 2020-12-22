@@ -25,75 +25,18 @@ You will learn:
 
 * https://docs.python.org/3/library/urllib.request.html#urllib.request.urlopen
 """
+import urllib.error
 import urllib.request
-
-
-
-# def count_dots_on_i(url: str) -> int:
-#     try:
-#         with urllib.request.urlopen(url) as response:
-#             html_content = response.read().decode()
-#             number_of_symbols = 0
-#             for symbol in html_content:
-#                 if symbol == "i":
-#                     number_of_symbols += 1
-#
-#             return number_of_symbols
-#     except:
-#         raise ValueError(f"Unreachable {url}")
-
-
-
-
-# ----------------------
 
 
 def count_dots_on_i(url: str) -> int:
     try:
-        response = urllib.request.urlopen(url)
-        html_content = response.read().decode()
-        number_of_symbols = 0
-        for symbol in html_content:
-            if symbol == "i":
-                number_of_symbols += 1
-        return number_of_symbols
-    except:
+        return sum(
+            sum(1 for symbol in line.decode() if symbol == "i")
+            for line in urllib.request.urlopen(  # noqa S310 Audit url open for permitted schemes. Allowing use of file:/ or custom schemes is often unexpected.
+                url
+            )
+        )
+
+    except urllib.error.HTTPError:
         raise ValueError(f"Unreachable {url}")
-
-# ----------------------
-
-# def count_dots_on_i(url: str) -> int:
-#     try:
-#         return sum(sum(1 for char in line.decode() if char == "i") for line in urllib.request.urlopen(url))
-#     except:
-#         raise ValueError(f"Unreachable {url}")
-
-
-
-
-
-
-
-url = "https://example.com/"
-# url = "1"
-
-
-print(count_dots_on_i(url))
-
-
-
-
-
-class A:
-    ...
-
-
-print(type(A))
-
-
-
-
-
-
-
-
