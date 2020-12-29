@@ -1,0 +1,145 @@
+C:\Users\V\AppData\Local\Programs\Python\Python39\python.exe D:/EPAM_python_cource/Homework/python_cource/hw10/task_1.py
+<span class="icon icon-menu"></span>
+<span class="icon icon-search"></span>
+<span class="icon icon-user"></span>
+<span class="icon icon-calendar"></span>
+<span class="markets-now__sub-caption"></span>
+<span class="markets-now__sub-caption"></span>
+<span class="markets-now__sub-caption">100</span>
+<span class="markets-now__sub-caption"></span>
+<span class="markets-now__sub-caption"></span>
+<span class="markets-now__sub-caption"></span>
+<span class="icon icon-search"></span>
+<span class="icon icon-close"></span>
+<span class="icon icon-user"></span>
+<span class="icon icon-social-media-twitter"></span>
+<span class="icon icon-social-media-facebook"></span>
+<span class="icon icon-social-media-linkedin"></span>
+<span class="icon icon-social-media-youtube"></span>
+<span class="icon icon-social-media-instagram"></span>
+<span class="icon icon-close"></span>
+<span id="cposition_0"></span>
+<span id="fecnt_1_1_0"></span>
+<span id="cposition_0"></span>
+<span id="fecnt_2_1_0"></span>
+<span class="price-section__label">3M Co. </span>
+<span class="price-section__category">Stock <span>, MMM</span></span>
+<span>, MMM</span>
+<span class="price-section__current-value">174.52</span>
+<span class="price-section__breakpoint"></span>
+<span class="price-section__absolute-value">
++0.53
+							</span>
+<span class="price-section__relative-value">
++0.30%
+							</span>
+<span></span>
+<span>Official Close 12/24/2020</span>
+<span>NYSE</span>
+<span id="cposition_0"></span>
+<span id="fecnt_3_1_0"></span>
+<span id="cposition_1"></span>
+<span id="fecnt_3_1_1"></span>
+<span id="cposition_2"></span>
+<span id="fecnt_3_1_2"></span>
+<span id="cposition_3"></span>
+<span id="fecnt_3_1_3"></span>
+<span id="cposition_4"></span>
+<span id="fecnt_3_1_4"></span>
+<span id="cposition_5"></span>
+<span id="fecnt_3_1_5"></span>
+<span id="cposition_6"></span>
+<span id="fecnt_3_1_6"></span>
+<span id="cposition_7"></span>
+<span id="fecnt_3_1_7"></span>
+<span class="icon icon-arrow-right"></span>
+<span class="instrument-stories__source">Business Times</span>
+<span class="instrument-stories__source">MotleyFool</span>
+<span class="instrument-stories__source">Investegate</span>
+<span class="instrument-stories__source">Zacks</span>
+<span class="instrument-stories__source">Forbes</span>
+<span id="cposition_8"></span>
+<span id="fecnt_3_1_8"></span>
+<span id="cposition_9"></span>
+<span id="fecnt_3_1_9"></span>
+<span id="cposition_10"></span>
+<span id="fecnt_3_1_10"></span>
+<span id="cposition_11"></span>
+<span id="fecnt_3_1_11"></span>
+<span id="cposition_12"></span>
+<span id="fecnt_3_1_12"></span>
+<span id="cposition_13"></span>
+<span id="fecnt_3_1_13"></span>
+<span id="cposition_14"></span>
+<span id="fecnt_3_1_14"></span>
+<span class="button__label">All</span>
+<span class="icon icon-arrow-down icon--size-small"></span>
+<span id="cposition_15"></span>
+<span id="fecnt_3_1_15"></span>
+<span id="cposition_16"></span>
+<span id="fecnt_3_1_16"></span>
+<span id="cposition_17"></span>
+<span id="fecnt_3_1_17"></span>
+<span id="cposition_18"></span>
+<span id="fecnt_3_1_18"></span>
+<span id="cposition_19"></span>
+<span id="fecnt_3_1_19"></span>
+<span id="cposition_20"></span>
+<span id="fecnt_3_1_20"></span>
+<span id="cposition_21"></span>
+<span id="fecnt_3_1_21"></span>
+<span id="cposition_22"></span>
+<span id="fecnt_3_1_22"></span>
+<span id="cposition_23"></span>
+<span id="fecnt_3_1_23"></span>
+<span id="cposition_24"></span>
+<span id="fecnt_3_1_24"></span>
+<span id="cposition_25"></span>
+<span id="fecnt_3_1_25"></span>
+<span aria-hidden="true">×</span>
+<span id="cposition_0"></span>
+<span id="fecnt_3_2_0"></span>
+<span id="cposition_1"></span>
+<span id="fecnt_3_2_1"></span>
+<span id="cposition_2"></span>
+<span id="fecnt_3_2_2"></span>
+<span id="cposition_3"></span>
+<span id="fecnt_3_2_3"></span>
+<span id="cposition_4"></span>
+<span id="fecnt_3_2_4"></span>
+<span id="cposition_5"></span>
+<span id="fecnt_3_2_5"></span>
+<span id="cposition_6"></span>
+<span id="fecnt_3_2_6"></span>
+<span id="cposition_7"></span>
+<span id="fecnt_3_2_7"></span>
+<span id="cposition_8"></span>
+<span id="fecnt_3_2_8"></span>
+<span id="cposition_9"></span>
+<span id="fecnt_3_2_9"></span>
+<span class="moodys-rating__label">Risk</span>
+<span class="moodys-rating__rating">3</span>
+<span id="cposition_10"></span>
+<span id="fecnt_3_2_10"></span>
+<span id="cposition_11"></span>
+<span id="fecnt_3_2_11"></span>
+<span id="cposition_12"></span>
+<span id="fecnt_3_2_12"></span>
+<span id="cposition_13"></span>
+<span id="fecnt_3_2_13"></span>
+<span id="cposition_14"></span>
+<span id="fecnt_3_2_14"></span>
+<span id="cposition_15"></span>
+<span id="fecnt_3_2_15"></span>
+<span id="cposition_16"></span>
+<span id="fecnt_3_2_16"></span>
+<span id="cposition_17"></span>
+<span id="fecnt_3_2_17"></span>
+<span class="icon icon-social-media-twitter"></span>
+<span class="icon icon-social-media-facebook"></span>
+<span class="site-footer__see-also">see also:</span>
+<span>* © 2020 Insider Inc. and <a href="https://www.finanzen.net/impressum">finanzen.net</a> GmbH (Imprint). All rights reserved.</span>
+<span>Registration on or use of this site constitutes acceptance of our <a href="http://www.businessinsider.com/terms">Terms of Service</a> and <a href="https://www.insider-inc.com/privacy-policy#ccpa">Privacy Policy</a>.</span>
+<span><a href="http://www.businessinsider.com/terms" rel="sponsored">Disclaimer</a> | <a href="http://www.businessinsider.com/commerce-on-business-insider" rel="sponsored">Commerce Policy</a> | <a href="http://nytm.org/made" rel="sponsored">Made In NYC</a> | Stock quotes by <a href="https://www.finanzen.net/">finanzen.net</a></span>
+
+Process finished with exit code 0
