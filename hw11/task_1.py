@@ -42,5 +42,5 @@ def simplified_enum(name: str, parents: tuple, attributes: dict) -> type:
             new_attributes.append(attributes[attr])
 
     return type(
-        name, parents, attributes | {"_" + name + "__keys": tuple(new_attributes)}
+        name, parents, {**attributes, **{"_" + name + "__keys": tuple(new_attributes)}}
     )
