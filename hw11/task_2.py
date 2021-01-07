@@ -31,6 +31,33 @@ assert order_1.final_price() == 10
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+# --------------------------------------------------------
+
+
 class Order:
     def __init__(self, price, discount):
         self.price = price
@@ -42,15 +69,15 @@ class Order:
 
 
     def final_price(self):
-        return self.price - self.price * self.discount()
+        return self.discount(self.price)
 
 
-def morning_discount():
-    return 0.2
+def morning_discount(price):
+    return price - price * 0.2
 
 
-def elder_discount():
-    return 0.4
+def elder_discount(price):
+    return price - price * 0.4
 
 
 
