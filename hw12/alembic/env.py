@@ -1,6 +1,8 @@
+import os
+import sys
 from logging.config import fileConfig
-from alembic import context
 
+from alembic import context
 
 # this is the Alembic Config object, which provides
 # access to the values within the .ini file in use.
@@ -10,27 +12,22 @@ config = context.config
 # This line sets up loggers basically.
 fileConfig(config.config_file_name)
 
-import os
-import sys
 current_path = os.path.dirname(os.path.abspath(__file__))
-ROOT_PATH = os.path.join(current_path, '..')
+ROOT_PATH = os.path.join(current_path, "..")
 sys.path.append(ROOT_PATH)
 
-from task_1 import engine, Base
+from task_1 import Base, engine  # noqa E402 - module level import not at top of file
 
 # add your model's MetaData object here
 # for 'autogenerate' support
-# from myapp import mymodel
-# target_metadata = mymodel.Base.metadata
 target_metadata = Base.metadata
 
 # other values from the config, defined by the needs of env.py,
 # can be acquired:
-# my_important_option = config.get_main_option("my_important_option")
 # ... etc.
 
 
-def run_migrations_offline():
+def run_migrations_offline() -> None:
     """Run migrations in 'offline' mode.
 
     This configures the context with just a URL
@@ -54,7 +51,7 @@ def run_migrations_offline():
         context.run_migrations()
 
 
-def run_migrations_online():
+def run_migrations_online() -> None:
     """Run migrations in 'online' mode.
 
     In this scenario we need to create an Engine
@@ -64,9 +61,7 @@ def run_migrations_online():
     connectable = engine
 
     with connectable.connect() as connection:
-        context.configure(
-            connection=connection, target_metadata=target_metadata
-        )
+        context.configure(connection=connection, target_metadata=target_metadata)
 
         with context.begin_transaction():
             context.run_migrations()
