@@ -36,11 +36,5 @@ assert SizesEnum.XL == "XL"
 
 
 def simplified_enum(name: str, parents: tuple, attributes: dict) -> type:
-    new_attributes = []
-    for attr in attributes:
-        if not attr.startswith("_"):
-            new_attributes.append(attributes[attr])
-
-    return type(
-        name, parents, {**attributes, **{"_" + name + "__keys": tuple(new_attributes)}}
-    )
+    new_attributes = {value: value for value in attributes["_" + name + "__keys"]}
+    return type(name, parents, new_attributes)
