@@ -8,5 +8,7 @@ max-complexity = 7
 max-cognitive-complexity = 15
 per-file-ignores =
     test*: D10, D101, D103, S101, ANN
+    hw6/task_2.py: R504
+            #  R504 - assign value to variable "instance_count_old" if it will be use only as return value
 application-import-names = hw1
 doctests = True
